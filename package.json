@@ -1,0 +1,25 @@
+{
+  "name": "altica",
+  "version": "1.0.0",
+  "description": "Geeks Avenue Altica",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Diama1/Geeks-Avenue-Altica.git"
+  },
+  "keywords": [
+    "Altica"
+  ],
+  "author": "Elie Mugenzi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Diama1/Geeks-Avenue-Altica/issues"
+  },
+  "homepage": "https://github.com/Diama1/Geeks-Avenue-Altica#readme",
+  "devDependencies": {
+    "node-sass": "^4.12.0"
+  }
+}

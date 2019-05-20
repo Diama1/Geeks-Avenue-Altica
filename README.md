@@ -1,0 +1,3 @@
+## Altica
+
+Altica is like Medium...
