@@ -6,8 +6,8 @@
 
 #### Below its what it will help you specifically
 
-..* Write a post / article.
-..* Read a post / article.
-..* like or clap for a post / article.
-..* Read a post based on what category you like.
-..* last but not least Enjoy the ride.....
+1. Write a post / article.
+2. Read a post / article.
+3. like or clap for a post / article.
+4. Read a post based on what category you like.
+5. last but not least Enjoy the ride.....
