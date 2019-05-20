@@ -4,7 +4,9 @@
   "description": "Geeks Avenue Altica",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass": "node-sass --include-path scss UI/scss/style.scss UI/css/style.css",
+    "watch-sass":"nodemon -e scss -x \"npm run sass\""
   },
   "repository": {
     "type": "git",
@@ -20,6 +22,7 @@
   },
   "homepage": "https://github.com/Diama1/Geeks-Avenue-Altica#readme",
   "devDependencies": {
-    "node-sass": "^4.12.0"
+    "node-sass": "^4.12.0",
+    "nodemon": "^1.19.0"
   }
 }
