@@ -48,10 +48,11 @@
   color: #ffffff; }
 
 form {
-  margin: auto 10%; }
+  margin: 20px 10%; }
   form .field {
     position: relative;
-    width: 100%; }
+    width: 100%;
+    margin-bottom: 20px; }
     form .field label {
       width: 100%;
       position: relative;
@@ -61,22 +62,24 @@ form {
       border: none;
       outline: none;
       height: 30px;
-      border-bottom: 1px solid #353D4A;
+      border-bottom: 1px solid #E8ECEF;
       background: transparent;
       transition: 0.5s ease-out; }
       form .field input[type=text]:focus, form .field input[type=email]:focus, form .field input[type=password]:focus {
-        border-bottom: 1px solid #E8ECEF;
+        border-bottom: 1px solid #b4bcca;
         transition: 0.5s ease-out; }
+    form .field input[type=text].title-input {
+      font-size: 40px; }
     form .field textarea {
       width: 100%;
       border: none;
       outline: none;
       height: 30px;
-      border-bottom: 1px solid #353D4A;
+      border-bottom: 1px solid #E8ECEF;
       background: transparent;
       transition: 0.5s ease-out; }
       form .field textarea:focus {
-        border-bottom: 1px solid #353D4A;
+        border-bottom: 1px solid #b4bcca;
         transition: 0.5s ease-out; }
 
 header {
@@ -164,6 +167,24 @@ header {
       transform: translate3d(0, 0, 0);
       opacity: 1;
       transition: 0.3s ease-out; }
+
+.grid {
+  display: grid;
+  grid-gap: 15px; }
+  .grid.grid-of-1x1 {
+    grid-template-columns: repeat(2, 1fr); }
+  .grid.grid-of-1x2 {
+    grid-template-columns: 1fr 2fr; }
+  .grid.grid-of-2x1 {
+    grid-template-columns: 2fr 1fr; }
+  .grid.grid-of-1x3 {
+    grid-template-columns: 1fr 3fr; }
+  .grid.grid-of-3x1 {
+    grid-template-columns: 3fr 1fr; }
+  .grid.grid-of-1x1x1 {
+    grid-template-columns: repeat(3, 1fr); }
+  .grid__item {
+    position: relative; }
 
 body {
   margin: 0;
