@@ -2,32 +2,50 @@
 .grid{
     display:grid;
     grid-gap:15px;
-
+    margin:auto 10%;
     // Grid of 2 equal items
     &.grid-of-1x1{
         grid-template-columns: repeat(2,1fr);
+        @include mediaSm{
+            grid-template-columns: 1fr;
+        }
     }
     // Grid of second item is 2 times the first
     &.grid-of-1x2{
         grid-template-columns: 1fr 2fr;
+        @include mediaSm{
+            grid-template-columns: 1fr;
+        }
     }
 
     // Grid of 1st item is 2 times bigger than second
     &.grid-of-2x1{
         grid-template-columns: 2fr 1fr;
+        @include mediaSm{
+            grid-template-columns: 1fr;
+        }
     }
     // Grid of second = 3 times bigger than first
     &.grid-of-1x3{
         grid-template-columns: 1fr 3fr;
+        @include mediaSm{
+            grid-template-columns: 1fr;
+        }
     }
     // grid of 3X1
     &.grid-of-3x1{
         grid-template-columns: 3fr 1fr;
+        @include mediaSm{
+            grid-template-columns: 1fr;
+        }
     }
 
     // Grid of 3 equal items
     &.grid-of-1x1x1{
         grid-template-columns:repeat(3,1fr);
+        @include mediaSm{
+            grid-template-columns: 1fr;
+        }
     }
 
     &__item{

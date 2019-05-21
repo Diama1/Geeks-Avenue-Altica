@@ -55,6 +55,9 @@ header{
                height: 2px;
                margin-bottom: 10px;
                @include easeOut(.3s);
+               @include mediaSm{
+                   width: 35px;
+               }
             }
 
             &.open{

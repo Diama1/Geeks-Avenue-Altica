@@ -16,6 +16,8 @@ form{
             height: 30px;
             border-bottom: 1px solid $color-primary-light;
             background:transparent;
+            color:$color-primary;
+            font-family: $font-family,serif;
             @include easeOut(.5s);
             &:focus{
                 border-bottom: 1px solid lighten($color-primary-dark,50%);
@@ -23,7 +25,18 @@ form{
             }
         }
         input[type=text].title-input{
-            font-size: 40px;
+            font-size: 27px;
+        }
+
+        select{
+            width: 100%;
+            border:none;
+            outline:none;
+            height: 30px;
+            border-bottom: 1px solid $color-primary-light;
+            background: transparent;
+            color:$color-primary;
+            font-family: $font-family,serif;
         }
 
         textarea{
@@ -33,6 +46,8 @@ form{
             height: 30px;
             border-bottom: 1px solid $color-primary-light;
             background: transparent;
+            color:$color-primary;
+            font-family: $font-family,serif;
             @include easeOut(.5s);
             &:focus{
                 border-bottom: 1px solid lighten($color-primary-dark,50%);
