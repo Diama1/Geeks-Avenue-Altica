@@ -48,10 +48,11 @@
   color: #ffffff; }
 
 form {
-  margin: auto 10%; }
+  margin: 20px 10%; }
   form .field {
     position: relative;
-    width: 100%; }
+    width: 100%;
+    margin-bottom: 20px; }
     form .field label {
       width: 100%;
       position: relative;
@@ -61,22 +62,24 @@ form {
       border: none;
       outline: none;
       height: 30px;
-      border-bottom: 1px solid #353D4A;
+      border-bottom: 1px solid #E8ECEF;
       background: transparent;
       transition: 0.5s ease-out; }
       form .field input[type=text]:focus, form .field input[type=email]:focus, form .field input[type=password]:focus {
-        border-bottom: 1px solid #E8ECEF;
+        border-bottom: 1px solid #b4bcca;
         transition: 0.5s ease-out; }
+    form .field input[type=text].title-input {
+      font-size: 40px; }
     form .field textarea {
       width: 100%;
       border: none;
       outline: none;
       height: 30px;
-      border-bottom: 1px solid #353D4A;
+      border-bottom: 1px solid #E8ECEF;
       background: transparent;
       transition: 0.5s ease-out; }
       form .field textarea:focus {
-        border-bottom: 1px solid #353D4A;
+        border-bottom: 1px solid #b4bcca;
         transition: 0.5s ease-out; }
 
 header {
