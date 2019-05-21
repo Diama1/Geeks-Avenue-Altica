@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "sass": "node-sass --include-path scss UI/scss/style.scss UI/css/style.css",
-    "watch-sass":"nodemon -e scss -x \"npm run sass\""
+    "watch-sass": "nodemon -e scss -x \"npm run sass\""
   },
   "repository": {
     "type": "git",
@@ -15,7 +15,7 @@
   "keywords": [
     "Altica"
   ],
-  "author": "Elie Mugenzi",
+  "author": "Elie Mugenzi,Diane Mahoro, Audace Uhiriwe, Frank Mutabazi",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Diama1/Geeks-Avenue-Altica/issues"
