@@ -31,24 +31,25 @@
 
     <main>
       <form>
+        <h2 class="text-center">Create an account with Artica</h2>
         <div class="field">
-          <label for="">Firstname</label>
-          <input type="text" name="firstname" id="firstname" class="field">
+          <label for="">Full Names</label>
+          <input type="text" name="names" id="names" required>
         </div>
         <div class="field">
-            <label for="">Lastname</label>
-            <input type="text" name="lastname" id="lastname" class="field">
-        </div>
-        <div class="field">
-          <label for="">E-mail</label>
-          <input type="email" name="email" id="email" class="field">
+            <label for="">Email</label>
+            <input type="email" name="email" id="email" required>
         </div>
         <div class="field">
           <label for="">Password</label>
-          <input type="password" name="password" id="password" class="field">
+          <input type="password" name="password" id="password" required>
         </div>
         <div class="field">
-          <button type="submit" class="btn btn-dark">Signup</button>
+          <label for="">Confirm Password</label>
+          <input type="password" name="confirm" id="confirm" required>
+        </div>
+        <div class="field">
+          <button type="submit" class="btn btn-primary">Register</button>
         </div>
       </form>
     </main>
