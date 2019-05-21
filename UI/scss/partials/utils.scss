@@ -12,6 +12,7 @@
     padding:.5rem 5rem;
     outline: none;
     text-decoration: none;
+    font-family: $font-family,serif;
     cursor: pointer;
     @include mediaSm{
         padding:.5rem 2rem;
@@ -67,4 +68,33 @@
 .bg-primary{
     background:$color-primary;
     color:$color-white;
+}
+
+main{
+    margin-top:100px;
+}
+
+.link{
+    &.link-primary{
+        color:$color-primary;
+    }
+    &.link-dark{
+        color:$color-dark;
+    }
+    &.link-white{
+        color:$color-white;
+    }
+}
+
+.underline{
+    width: 80px;
+    height: 3px;
+    display: inline-block;
+
+    &.underline-primary{
+        background:$color-primary;
+    }
+    &.underline-secondary{
+        background:$color-secondary;
+    }
 }
