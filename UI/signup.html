@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="./css/style.css">
-  <title>Artica - Login</title>
+  <title>Artica - Signup</title>
 </head>
 <body>
     <header>
@@ -21,10 +21,10 @@
         </div> 
         <nav>
             <ul>
-                <li><a href="">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="">Categories</a></li>
-                <li><a href="">Login</a></li>
-                <li><a href="">Register</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href=""></a></li>
             </ul>
         </nav>
     </header>
@@ -32,15 +32,23 @@
     <main>
       <form>
         <div class="field">
+          <label for="">Firstname</label>
+          <input type="text" name="firstname" id="firstname" class="field">
+        </div>
+        <div class="field">
+            <label for="">Lastname</label>
+            <input type="text" name="lastname" id="lastname" class="field">
+        </div>
+        <div class="field">
           <label for="">E-mail</label>
-        <input type="email" name="email" id="email" class="field">
+          <input type="email" name="email" id="email" class="field">
         </div>
         <div class="field">
           <label for="">Password</label>
           <input type="password" name="password" id="password" class="field">
         </div>
         <div class="field">
-          <button type="submit" class="btn btn-dark">Login</button>
+          <button type="submit" class="btn btn-dark">Signup</button>
         </div>
       </form>
     </main>
