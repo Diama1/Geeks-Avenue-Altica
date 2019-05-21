@@ -7,7 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "sass": "node-sass --include-path scss UI/scss/style.scss UI/css/style.css",
     "watch-sass": "nodemon -e scss -x \"npm run sass\"",
+    "deploy-ui":"gh-pages -d UI",
     "start": "nodemon --exec babel-node app.js"
+
   },
   "repository": {
     "type": "git",
@@ -21,8 +23,9 @@
   "bugs": {
     "url": "https://github.com/Diama1/Geeks-Avenue-Altica/issues"
   },
-  "homepage": "https://github.com/Diama1/Geeks-Avenue-Altica#readme",
+  "homepage": "diama1.github.io/Geeks-Avenue-Altica",
   "devDependencies": {
+    "gh-pages": "^2.0.1",
     "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.4",
     "@babel/node": "^7.2.2",

@@ -1,7 +1,9 @@
 .category{
     &__post{
         position: relative;
-        margin-bottom: 15px;
+        margin-bottom: 35px;
+        border:1px solid $color-primary-light;
+        padding: 20px;
         &--image{
             position: relative;
             img{
