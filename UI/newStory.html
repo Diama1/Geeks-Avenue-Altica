@@ -21,10 +21,10 @@
                 </div> 
                 <nav>
                     <ul>
-                        <li><a href="">Home</a></li>
+                        <li><a href="index.html">Home</a></li>
                         <li><a href="">Categories</a></li>
-                        <li><a href="">Login</a></li>
-                        <li><a href="">Register</a></li>
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="signup.html">Register</a></li>
                     </ul>
                 </nav>
              </header>
@@ -35,13 +35,23 @@
         </div>
 
         <div class="field">
+                <label for="">Category</label>
+                <select name="category" id="">
+                    <option value="Technology">Technology</option>
+                    <option value="Health">Health</option>
+                    <option value="Economy">Economy</option>
+                    <option value="`Politics">Politics</option>
+                </select>
+        </div>
+
+        <div class="field">
                 <label for="">Picture</label>
                 <input type="file" name="" id="">
         </div>
 
         <div class="field">
             <label for="">Text</label>
-            <textarea name="" id="" cols="30" rows="10"></textarea>
+            <textarea name="" id="" rows="100" cols="50" ></textarea>
         </div>
         
         <input type="submit" value="Save" class="btn btn-primary">
