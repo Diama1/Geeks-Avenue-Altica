@@ -245,7 +245,9 @@ header {
 
 .category__post {
   position: relative;
-  margin-bottom: 15px; }
+  margin-bottom: 35px;
+  border: 1px solid #E8ECEF;
+  padding: 20px; }
   .category__post--image {
     position: relative; }
     .category__post--image img {
