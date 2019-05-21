@@ -1,0 +1,16 @@
+// Colors declaration...
+
+$color-primary:#8898A6;
+$color-white:#ffffff;
+$color-dark:#000000;
+$color-primary-light:#E8ECEF;
+$color-primary-dark:#353D4A;
+
+// Font
+$font-family:"Slabo 27px";
+
+// Breakpoints for responsiveness
+$mobile: 480px;
+$tablet: 768px;
+$desktop-min: $tablet + 1px;
+$desktop-max: 1024px;

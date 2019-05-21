@@ -1,0 +1,39 @@
+form{
+    margin:auto 10%;
+    .field{
+        position: relative;
+        width: 100%;
+        label{
+            width: 100%;
+            position: relative;
+            display: inline-block;
+        }
+        input[type=text],input[type=email],input[type=password]{
+            width: 100%;
+            border:none;
+            outline: none;
+            height: 30px;
+            border-bottom: 1px solid $color-primary-dark;
+            background:transparent;
+            @include easeOut(.5s);
+            &:focus{
+                border-bottom: 1px solid $color-primary-light;
+                @include easeOut(.5s);
+            }
+        }
+
+        textarea{
+            width: 100%;
+            border:none;
+            outline: none;
+            height: 30px;
+            border-bottom: 1px solid $color-primary-dark;
+            background: transparent;
+            @include easeOut(.5s);
+            &:focus{
+                border-bottom: 1px solid $color-primary-dark;
+                @include easeOut(.5s);
+            }
+        }
+    }
+}
