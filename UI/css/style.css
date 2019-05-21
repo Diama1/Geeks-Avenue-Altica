@@ -165,6 +165,24 @@ header {
       opacity: 1;
       transition: 0.3s ease-out; }
 
+.grid {
+  display: grid;
+  grid-gap: 15px; }
+  .grid.grid-of-1x1 {
+    grid-template-columns: repeat(2, 1fr); }
+  .grid.grid-of-1x2 {
+    grid-template-columns: 1fr 2fr; }
+  .grid.grid-of-2x1 {
+    grid-template-columns: 2fr 1fr; }
+  .grid.grid-of-1x3 {
+    grid-template-columns: 1fr 3fr; }
+  .grid.grid-of-3x1 {
+    grid-template-columns: 3fr 1fr; }
+  .grid.grid-of-1x1x1 {
+    grid-template-columns: repeat(3, 1fr); }
+  .grid__item {
+    position: relative; }
+
 body {
   margin: 0;
   padding: 0;
