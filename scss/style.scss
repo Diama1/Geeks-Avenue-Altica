@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css?family=Dancing+Script|Source+Serif+Pro&display=swap');
+@import "./partials/variables.scss";
+@import "./partials/mixins.scss";
+@import "./partials/mobile.scss";
+@import "./partials/utils.scss";
+@import "./partials/form.scss";
+@import "./partials/header.scss";
+@import "./partials/grid.scss";
+@import "./partials/category.scss";
+body{
+    margin: 0;
+    padding: 0;
+    font-family: $font-family, serif;
+}
