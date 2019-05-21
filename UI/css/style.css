@@ -10,6 +10,8 @@
   outline: none;
   text-decoration: none;
   font-family: "Source Serif Pro", serif;
+  font-size: 16px;
+  border-radius: 3px;
   cursor: pointer; }
   @media (max-width: 480px) {
     .btn {
