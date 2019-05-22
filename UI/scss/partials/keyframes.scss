@@ -1,0 +1,11 @@
+@keyframes zoomUp{
+    from{
+        
+        transform:trandlateY(50px);
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
