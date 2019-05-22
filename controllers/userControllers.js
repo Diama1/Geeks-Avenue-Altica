@@ -30,6 +30,8 @@ export default class UserController {
      if(Object.keys(newUserAcc.dataValues).length > 0) {
          const token = jwt.sign({
              email: email,
+             id: newUserAcc.dataValues.id,
+             fullNames: newUserAcc.dataValues.fullNames,
          }, process.env.SECRET_KEY, {
              expiresIn: 86400, //this will expire in one day
          });
@@ -59,6 +61,7 @@ export default class UserController {
       && bcrypt.compareSync(password, checkUser[0].dataValues.password)) {
       const token = jwt.sign({
         email: checkUser[0].dataValues.email,
+        id: checkUser[0].dataValues.id,
       }, process.env.SECRET_KEY, {
         expiresIn: 86400, // this is equivalent to a day in seconds
       });
