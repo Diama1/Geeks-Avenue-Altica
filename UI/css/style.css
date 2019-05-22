@@ -117,7 +117,7 @@ form {
       width: 100%;
       border: none;
       outline: none;
-      height: 30px;
+      height: 190px;
       border-bottom: 1px solid #E8ECEF;
       background: transparent;
       color: #8898A6;
@@ -289,6 +289,62 @@ header {
   to {
     opacity: 1;
     transform: translateY(0); } }
+
+.article {
+  margin: auto 10%; }
+  .article__details {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px; }
+  .article__author strong {
+    color: #407DA6;
+    font-size: 20px; }
+  .article__content p {
+    line-height: 2rem; }
+  .article__comments--list {
+    border: 1px solid #edf4f8;
+    padding: 20px; }
+  .article__options {
+    display: inline-block; }
+    .article__options--stats {
+      margin-bottom: 10px;
+      padding: 15px; }
+      .article__options--stats span {
+        border: 1px solid #E8ECEF;
+        padding: 10px; }
+        .article__options--stats span:first-child {
+          margin-right: 15px; }
+  .article__comment {
+    border: 1px solid #edf4f8;
+    padding: 20px;
+    margin-bottom: 8px; }
+    .article__comment--author {
+      font-weight: 700;
+      font-size: 16px; }
+
+.profile {
+  margin: auto 10%; }
+  .profile__picture img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%; }
+  .profile__container {
+    border: 1px solid #8898A6;
+    padding: 20px; }
+  .profile__name {
+    display: inline-block;
+    margin-bottom: 20px; }
+  .profile__articles {
+    margin-bottom: 20px; }
+  .profile__article {
+    padding: 20px;
+    border: 1px solid #E8ECEF; }
+    .profile__article--image {
+      position: relative; }
+      .profile__article--image img {
+        position: relative;
+        width: 100%;
+        height: 100%; }
 
 body {
   margin: 0;
