@@ -61,7 +61,7 @@ export default class UserController {
                 },
             });
             if (checkUser.length > 0
-      && HashHelper.comparePassword(password,checkUser[0].dataValues.password)) {
+      && HashHelper.comparePassword(password, checkUser[0].dataValues.password)) {
                 const token = jwt.sign({
                     email: checkUser[0].dataValues.email,
                     id: checkUser[0].dataValues.id,
