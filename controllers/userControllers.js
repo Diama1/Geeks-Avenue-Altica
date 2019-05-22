@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import db from "../models";
+import HashHelper from "../helpers/Hash.helper";
 
 const { User } = db;
 
@@ -27,7 +28,7 @@ export default class UserController {
             const newUserAcc = await User.create({
                 fullNames,
                 email,
-                password: bcrypt.hashSync(password, 8),
+                password: HashHelper.hashPassword(password)
             });
             if (Object.keys(newUserAcc.dataValues).length > 0) {
                 const token = jwt.sign({
@@ -60,7 +61,7 @@ export default class UserController {
                 },
             });
             if (checkUser.length > 0
-      && bcrypt.compareSync(password, checkUser[0].dataValues.password)) {
+      && HashHelper.comparePassword(password,checkUser[0].dataValues.password)) {
                 const token = jwt.sign({
                     email: checkUser[0].dataValues.email,
                     id: checkUser[0].dataValues.id,
