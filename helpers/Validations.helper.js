@@ -5,7 +5,7 @@ class Validations {
         const schema = Joi.object().keys({
             fullNames: Joi.string().min(5).required(),
             email: Joi.string().email().required(),
-            password: Joi.string.regex(/[a-zA-Z0-9]{6,15}/).required(),
+            password: Joi.string().regex(/[a-zA-Z0-9]{6,15}/).required(),
         });
 
         return Joi.validate(user, schema);
