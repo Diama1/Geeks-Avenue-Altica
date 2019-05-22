@@ -5,6 +5,12 @@
 .dark {
   color: #000000; }
 
+.primary {
+  color: #8898A6; }
+
+.secondary {
+  color: #407DA6; }
+
 .btn {
   padding: .5rem 5rem;
   outline: none;
@@ -37,7 +43,8 @@
   text-align: center; }
 
 .text-right {
-  text-align: right; }
+  text-align: right;
+  float: right; }
 
 .text-left {
   text-align: left; }
@@ -124,7 +131,12 @@ header {
   justify-content: space-between;
   background: #ffffff;
   height: 70px;
-  border-bottom: 1px solid #8898A6;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
   padding-bottom: 20px; }
   @media (max-width: 480px) {
     header {
@@ -243,18 +255,15 @@ header {
       .grid.grid-of-1x1x1 {
         grid-template-columns: 1fr; } }
   .grid__item {
-    position: relative; }
+    border-bottom: 1px solid #8898A6; }
 
 .category__post {
-  position: relative;
   margin-bottom: 35px;
   border: 1px solid #E8ECEF;
-  padding: 20px; }
-  .category__post--image {
-    position: relative; }
-    .category__post--image img {
-      position: relative;
-      width: 100%; }
+  padding: 20px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3); }
+  .category__post--image img {
+    width: 100%; }
   .category__post--title {
     color: #353D4A; }
   .category__post--description p {
@@ -272,7 +281,40 @@ header {
       .categories__list--item a {
         color: #407DA6; }
 
+@keyframes zoomUp {
+  from {
+    transform: trandlateY(50px);
+    opacity: 0; }
+  to {
+    opacity: 1;
+    transform: translateY(0); } }
+
 body {
   margin: 0;
   padding: 0;
   font-family: "Source Serif Pro", serif; }
+
+.showcase {
+  width: 100vw;
+  height: 80vh;
+  background: url(https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500) no-repeat center/cover;
+  display: flex; }
+  .showcase__intro {
+    position: relative;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    animation: zoomUp 2s ease-out;
+    margin: auto; }
+    .showcase__intro h4 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 24px; }
+    .showcase__intro h2 {
+      text-transform: uppercase;
+      font-size: 30px; }
+
+.popular__posts {
+  padding: 20px; }
+  .popular__posts--item {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #e0e4e7;
+    padding: 15px; }
