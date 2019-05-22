@@ -47,7 +47,8 @@
   float: right; }
 
 .text-left {
-  text-align: left; }
+  text-align: left;
+  float: left; }
 
 .bg-dark {
   color: #ffffff;
@@ -283,7 +284,7 @@ header {
 
 @keyframes zoomUp {
   from {
-    transform: trandlateY(50px);
+    transform: translateY(50px);
     opacity: 0; }
   to {
     opacity: 1;
