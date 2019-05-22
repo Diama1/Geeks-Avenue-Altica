@@ -7,8 +7,46 @@
 @import "./partials/header.scss";
 @import "./partials/grid.scss";
 @import "./partials/category.scss";
+@import "./partials/keyframes.scss";
+@import "./partials/article.scss";
+@import "./partials//profile.scss";
 body{
     margin: 0;
     padding: 0;
     font-family: $font-family, serif;
+}
+
+.showcase{
+    width: 100vw;
+    height: 80vh;
+    background: url(https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500) no-repeat center/cover;
+   display: flex;
+    &__intro{
+        position: relative;
+        background:rgba(0,0,0,.5);
+        padding: 20px;
+        animation:zoomUp 2s ease-out;
+        margin:auto;
+      
+        h4{
+            font-family: 'Dancing Script', cursive;
+            font-size: 24px;
+        }
+        h2{
+            text-transform: uppercase;
+            font-size: 30px;
+            
+        }
+    }
+}
+
+.popular{
+    &__posts{
+        padding: 20px;
+        &--item{
+            margin-bottom: 10px;
+            border-bottom:1px solid lighten($color-primary,30%);
+            padding: 15px;
+        }
+    }
 }

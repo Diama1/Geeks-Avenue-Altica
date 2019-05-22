@@ -6,6 +6,12 @@
 .dark{
     color:$color-dark;
 }
+.primary{
+    color:$color-primary;
+}
+.secondary{
+    color:$color-secondary;
+}
 
 // Buttons
 .btn{
@@ -55,9 +61,11 @@
 
 .text-right{
     text-align: right;
+    float:right;
 }
 .text-left{
     text-align: left;
+    float:left;
 }
 
 

@@ -3,7 +3,12 @@ header{
     justify-content: space-between;
     background: $color-white;
     height:70px;
-    border-bottom: 1px solid $color-primary;
+    width:100%;
+    position: fixed;
+    top:0;
+    left:0;
+    z-index: 10;
+    box-shadow: 0 0 4px rgba(0,0,0,0.3);
     padding-bottom: 20px;
 
     @include mediaSm{
