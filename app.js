@@ -9,7 +9,6 @@ app.use(bodyparser.urlencoded({extended:false}));
 
 // below are the user endpoint for logging into the system
 app.use('/api/v1/auth', UserRoutes);
-app.use('/api/v1/auth', UserRoutes);
 
 app.listen(Port, () => {
     console.log(`the app is tuned on this server ${Port}`);
