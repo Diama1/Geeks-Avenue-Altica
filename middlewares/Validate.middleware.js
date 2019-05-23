@@ -26,7 +26,7 @@ class Validate {
     }
 
     static validateArticle(req, res, next) {
-        const { error } = Validations.validateArticle(req.body);
+        const { error } = Validations.articleValidate(req.body);
         if (error) {
             res.status(400).json({
                 status: 400,
