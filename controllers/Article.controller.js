@@ -49,16 +49,23 @@ class ArticleController {
         if (Object.keys(user.dataValues).length) {
             const article = await Article.findOne({ where: { id: articleId } });
             if (Object.keys(article.dataValues).length) {
-                const result = await Article.destroy({ where: { id: articleId }, returning: true });
-                if (result) {
-                    res.json({
-                        status: 200,
-                        message: "Deleted!",
-                    });
+                if (parseInt(article.dataValues.authorid, 10) === parseInt(id, 10)) {
+                    const result = await Article.destroy({ where: { id: articleId }, returning: true });
+                    if (result) {
+                        res.json({
+                            status: 200,
+                            message: "Deleted!",
+                        });
+                    } else {
+                        res.status(500).json({
+                            status: 500,
+                            error: "Sorry,this article can't be deleted",
+                        });
+                    }
                 } else {
-                    res.status(500).json({
-                        status: 500,
-                        error: "Sorry,this article can't be deleted",
+                    res.status(400).json({
+                        status: 400,
+                        error: "You are not the owner of this story!",
                     });
                 }
             } else {
