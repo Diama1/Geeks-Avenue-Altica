@@ -6,6 +6,7 @@ const router = Router();
 
 router.post("/", Auth.verifyToken, ArticleController.createStory);
 router.get("/", Auth.verifyToken, ArticleController.getAllArticles);
+router.get("/personal", Auth.verifyToken, ArticleController.getStoryOwn )
 router.get("/:id", Auth.verifyToken, ArticleController.getSpecificArticle);
 router.delete("/:articleId", Auth.verifyToken, ArticleController.deleteStory);
 
