@@ -1,7 +1,6 @@
 /* eslint-disable import/no-unresolved */
 import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt";
 import db from "../models";
 import HashHelper from "../helpers/Hash.helper";
 

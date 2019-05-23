@@ -7,8 +7,10 @@ const router = Router();
 
 router.post("/", Auth.verifyToken, Validate.validateArticle, ArticleController.createStory);
 router.get("/", Auth.verifyToken, ArticleController.getAllArticles);
-router.get("/personal", Auth.verifyToken, ArticleController.getStoryOwn )
+router.get("/personal", Auth.verifyToken, ArticleController.getStoryOwn);
 router.get("/:id", Auth.verifyToken, ArticleController.getSpecificArticle);
 router.delete("/:articleId", Auth.verifyToken, ArticleController.deleteStory);
+router.patch("/:articleId/like", Auth.verifyToken, ArticleController.likeArticle);
+router.patch("/:articleId/unlike", Auth.verifyToken, ArticleController.unlikeArticle);
 
 export default router;
