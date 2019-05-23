@@ -49,7 +49,8 @@ class ArticleController {
         const user = await User.findOne({ where: { id } });
         if (Object.keys(user.dataValues).length) {
             const article = await Article.findOne({ where: { id: articleId } });
-            if (Object.keys(article.dataValues).length) {
+            console.log(article);
+            if (article) {
                 if (parseInt(article.dataValues.authorid, 10) === parseInt(id, 10)) {
                     const result = await Article.destroy({ where: { id: articleId }, returning: true });
                     if (result) {
