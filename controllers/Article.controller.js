@@ -15,26 +15,25 @@ class ArticleController {
      *
      * description: This helps user to create a new story
      */
-    static createStory(req, res) {
+    static async createStory(req, res) {
         const { id } = req.user;
         const { title, description, category } = req.body;
-        User.findAll({ where: { id } }).then((user) => {
-            if (Object.keys(user).length) {
-                Article.create({
-                    title,
-                    description,
-                    category,
-                    likes: 0,
-                    authorid: id,
-                }).then((article) => {
-                    console.log(article);
-                    res.status(201).json({
-                        status: 201,
-                        data: article,
-                    });
-                });
-            }
-        });
+        const user = await User.findOne({ where: { id } });
+        console.log(user.dataValues);
+        if (Object.keys(user.dataValues).length) {
+            const newStory = await Article.create({
+                title,
+                description,
+                category,
+                likes: 0,
+                authorid: id,
+            });
+            res.status(201).json({
+                status: 201,
+                message: "New Story created",
+                data: newStory,
+            });
+        }
     }
 }
 
