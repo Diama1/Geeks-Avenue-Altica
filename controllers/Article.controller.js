@@ -36,6 +36,30 @@ class ArticleController {
         }
     }
 
+    
+
+        /**
+     * @static
+     *
+     * @param {*} req - request
+     * @param {*} res -response
+     * @description - User should be able to get all the articles...
+     */
+
+    static async getAllArticles(req, res) {
+        const stories = await Article.findAll();
+        
+        res.status(200).json({
+            status:200,
+            message:"All Articles",
+            data: stories
+        })
+    }
+
+
+
+
+
     /**
      * @static
      *
