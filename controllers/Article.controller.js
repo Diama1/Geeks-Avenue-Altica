@@ -41,6 +41,7 @@ class ArticleController {
      *
      * @param {*} req - request
      * @param {*} res -response
+     * @description - User should be able to delete their own story...
      */
     static async deleteStory(req, res) {
         const { id } = req.user;
