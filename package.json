@@ -4,12 +4,14 @@
   "description": "Geeks Avenue Altica",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "NODE_ENV=test npm run undo && NODE_ENV=test npm run migrate && NODE_ENV=test nyc mocha --require @babel/register --require @babel/polyfill --timeout 5000 ./tests/*.js",
     "sass": "node-sass --include-path scss UI/scss/style.scss UI/css/style.css",
     "watch-sass": "nodemon -e scss -x \"npm run sass\"",
     "deploy-ui": "gh-pages -d UI",
     "dev": "nodemon --exec babel-node app.js",
-    "start": "babel-node app.js"
+    "start": "babel-node app.js",
+    "migrate": "sequelize db:migrate",
+    "undo": "sequelize db:migrate:undo:all"
   },
   "repository": {
     "type": "git",
@@ -25,9 +27,13 @@
   },
   "homepage": "diama1.github.io/Geeks-Avenue-Altica",
   "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
     "gh-pages": "^2.0.1",
+    "mocha": "^6.1.4",
     "node-sass": "^4.12.0",
     "nodemon": "^1.19.0",
+    "nyc": "^14.1.1",
     "sequelize-cli": "^5.4.0"
   },
   "dependencies": {

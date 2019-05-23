@@ -12,11 +12,11 @@ module.exports = {
         dialect: process.env.DIALECT,
     },
     test: {
-        username: "root",
-        password: null,
-        database: "database_test",
-        host: "127.0.0.1",
-        dialect: "mysql",
+        username: process.env.USERNAME,
+        password: process.env.PASSWORD,
+        database: process.env.TEST_DATABASE,
+        host: process.env.HOST,
+        dialect: process.env.DIALECT,
     },
     production: {
         username: "root",
