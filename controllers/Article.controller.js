@@ -36,6 +36,116 @@ class ArticleController {
         }
     }
 
+    
+
+        /**
+     * @static
+     *
+     * @param {*} req - request
+     * @param {*} res -response
+     * @description - User should be able to get all the articles...
+     */
+
+    static async getAllArticles(req, res) {
+        const stories = await Article.findAll();
+        
+        res.status(200).json({
+            status:200,
+            message:"All Articles",
+            data: stories
+        })
+    }
+
+    /**
+     * @static
+     *
+     * @param {*} req - request
+     * @param {*} res -response
+     * @description - User should be able to get one specific story...
+     */
+    static async getSpecificArticle(req, res) {
+        const specificStory = await Article.findOne({
+            where:{
+                id:req.params.id
+            }
+        });
+        if (specificStory){
+            res.send({
+                status: 200,
+                data: specificStory.dataValues
+            })
+
+        }
+        else {
+            res.send({
+                status: 404,
+                Message: "The Article not available"
+            }).status(404);
+        }
+
+    }
+
+    /**
+     * @static
+     *
+     * @param {*} req - request
+     * @param {*} res -response
+     * @description - User should be able to get all articles their own...
+     */
+
+     static async getStoryOwn(req, res){
+         const { id } = req.user;
+         const user = await User.findOne({where: { id }});
+         if (Object.keys(user.dataValues).length) {
+             const articles = await Article.findAll({ where: { authorid:id}})
+             console.log(articles);
+             if(articles.length){
+                res.json({
+                    status: 200,
+                    data: articles
+                })
+             }
+             else{
+                res.json({
+                    status: 200,
+                    message: "You do not have any Article"
+                })
+             }
+         }
+         
+         
+
+     }
+
+    /**
+    * @Author - Audace Uhiriwe
+    * @param {title,description,category} req - Request Object
+    * @param {Object} res - Response Object
+    */
+     static async editStory(req,res){
+         const {articleId}=req.params;
+         const {title,description,category}=req.body;
+         
+         const updateData={
+             title: title || req.Existing.title,
+             description:description || req.Existing.description,
+             category:category || req.Existing.category
+         };
+         
+         //@Update the Article's Data in the database
+         await Article.update({
+             title:updateData.title,
+             description:updateData.description,
+             category:updateData.category
+         },{where:{id:articleId}});
+         
+         //@returning a response
+         return res.status(200).send({
+             status:res.statusCode,
+             message:"Article successfully updated...",
+         })
+     }
+
     /**
      * @static
      *
@@ -49,7 +159,8 @@ class ArticleController {
         const user = await User.findOne({ where: { id } });
         if (Object.keys(user.dataValues).length) {
             const article = await Article.findOne({ where: { id: articleId } });
-            if (Object.keys(article.dataValues).length) {
+            console.log(article);
+            if (article) {
                 if (parseInt(article.dataValues.authorid, 10) === parseInt(id, 10)) {
                     const result = await Article.destroy({ where: { id: articleId }, returning: true });
                     if (result) {
