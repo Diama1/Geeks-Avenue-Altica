@@ -56,8 +56,36 @@ class ArticleController {
         })
     }
 
+    /**
+     * @static
+     *
+     * @param {*} req - request
+     * @param {*} res -response
+     * @description - User should be able to get one specific story...
+     */
+    static async getSpecificArticle(req, res) {
+        const specificStory = await Article.findOne({
+            where:{
+                id:req.params.id
+            }
+        });
+        if (specificStory){
+            res.send({
+                status: 200,
+                data: specificStory.dataValues
+            })
+
+        }
+        else {
+            res.send({
+                status: 404,
+                Message: "The Article not available"
+            }).status(404);
+        }
 
 
+
+    }
 
 
     /**
