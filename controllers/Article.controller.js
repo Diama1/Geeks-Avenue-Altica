@@ -118,6 +118,35 @@ class ArticleController {
      }
 
     /**
+    * @Author - Audace Uhiriwe
+    * @param {title,description,category} req - Request Object
+    * @param {Object} res - Response Object
+    */
+     static async editStory(req,res){
+         const {articleId}=req.params;
+         const {title,description,category}=req.body;
+         
+         const updateData={
+             title: title || req.Existing.title,
+             description:description || req.Existing.description,
+             category:category || req.Existing.category
+         };
+         
+         //@Update the Article's Data in the database
+         await Article.update({
+             title:updateData.title,
+             description:updateData.description,
+             category:updateData.category
+         },{where:{id:articleId}});
+         
+         //@returning a response
+         return res.status(200).send({
+             status:res.statusCode,
+             message:"Article successfully updated...",
+         })
+     }
+
+    /**
      * @static
      *
      * @param {*} req - request
