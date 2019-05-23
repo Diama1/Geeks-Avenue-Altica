@@ -24,6 +24,18 @@ class Validate {
             next();
         }
     }
+
+    static validateArticle(req, res, next) {
+        const { error } = Validations.validateArticle(req.body);
+        if (error) {
+            res.status(400).json({
+                status: 400,
+                error: error.details[0].message.replace(/[$\/\\#,+()$~%.'":*<>{}]/g, ""),
+            });
+        } else {
+            next();
+        }
+    }
 }
 
 export default Validate;

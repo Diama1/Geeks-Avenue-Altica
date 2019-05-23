@@ -18,6 +18,15 @@ class Validations {
         });
         return Joi.validate(user, schema);
     }
+
+    static articleValidate(article) {
+        const schema = Joi.object().keys({
+            title: Joi.string().required(),
+            description: Joi.string().required(),
+            category: Joi.string().required(),
+        });
+        return Joi.validate(article, schema);
+    }
 }
 
 export default Validations;
