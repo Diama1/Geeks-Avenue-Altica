@@ -1,6 +1,7 @@
+/* eslint-disable max-len */
 import db from "../models";
 
-const { Article, User } = db;
+const { Article, User, ArticleLike } = db;
 
 /**
  *
@@ -36,9 +37,8 @@ class ArticleController {
         }
     }
 
-    
 
-        /**
+    /**
      * @static
      *
      * @param {*} req - request
@@ -48,12 +48,12 @@ class ArticleController {
 
     static async getAllArticles(req, res) {
         const stories = await Article.findAll();
-        
+
         res.status(200).json({
-            status:200,
-            message:"All Articles",
-            data: stories
-        })
+            status: 200,
+            message: "All Articles",
+            data: stories,
+        });
     }
 
     /**
@@ -65,24 +65,21 @@ class ArticleController {
      */
     static async getSpecificArticle(req, res) {
         const specificStory = await Article.findOne({
-            where:{
-                id:req.params.id
-            }
+            where: {
+                id: req.params.id,
+            },
         });
-        if (specificStory){
+        if (specificStory) {
             res.send({
                 status: 200,
-                data: specificStory.dataValues
-            })
-
-        }
-        else {
+                data: specificStory.dataValues,
+            });
+        } else {
             res.send({
                 status: 404,
-                Message: "The Article not available"
+                Message: "The Article not available",
             }).status(404);
         }
-
     }
 
     /**
@@ -93,29 +90,25 @@ class ArticleController {
      * @description - User should be able to get all articles their own...
      */
 
-     static async getStoryOwn(req, res){
-         const { id } = req.user;
-         const user = await User.findOne({where: { id }});
-         if (Object.keys(user.dataValues).length) {
-             const articles = await Article.findAll({ where: { authorid:id}})
-             console.log(articles);
-             if(articles.length){
+    static async getStoryOwn(req, res) {
+        const { id } = req.user;
+        const user = await User.findOne({ where: { id } });
+        if (Object.keys(user.dataValues).length) {
+            const articles = await Article.findAll({ where: { authorid: id } });
+            console.log(articles);
+            if (articles.length) {
                 res.json({
                     status: 200,
-                    data: articles
-                })
-             }
-             else{
+                    data: articles,
+                });
+            } else {
                 res.json({
                     status: 200,
-                    message: "You do not have any Article"
-                })
-             }
-         }
-         
-         
-
-     }
+                    message: "You do not have any Article",
+                });
+            }
+        }
+    }
 
     /**
     * @Author - Audace Uhiriwe
@@ -186,6 +179,82 @@ class ArticleController {
                     error: "Article is not available to be deleted!",
                 });
             }
+        }
+    }
+
+    /**
+   * @static
+   * @param {*} req - request
+   * @param {*} res - response
+   * @description - this function enables user to like an article
+   */
+    static async likeArticle(req, res) {
+        const { id } = req.user;
+        const { articleId } = req.params;
+        const articleToLike = await Article.findOne({ where: { id: articleId } });
+        if (articleToLike) {
+            const liked = await ArticleLike.findOne({ where: { userid: id, articleid: articleId } });
+            const { likes } = articleToLike.dataValues;
+            if (!liked) {
+                const newLikes = parseInt(likes, 10) + 1;
+
+                const article = await Article.update({ likes: newLikes }, { where: { id: articleId } });
+                console.log(article.dataValues);
+                const articleLiked = await ArticleLike.create({
+                    userid: id,
+                    articleid: articleId,
+                });
+                if (articleLiked) {
+                    res.json({
+                        status: 200,
+                        message: "Good!",
+                    });
+                }
+            } else {
+                res.json({
+                    status: 400,
+                    error: "Already liked!",
+                }).status(400);
+            }
+        } else {
+            res.status(404).json({
+                status: 404,
+                error: "This article is not available",
+            });
+        }
+    }
+
+    static async unlikeArticle(req, res) {
+        const { id } = req.user;
+        const { articleId } = req.params;
+        const articleToUnlike = await Article.findOne({ where: { id: articleId } });
+        if (articleToUnlike) {
+            const { likes } = articleToUnlike.dataValues;
+            const liked = await ArticleLike.findOne({ where: { userid: id, articleid: articleId } });
+            if (liked) {
+                const newLikes = parseInt(likes, 10) - 1;
+                // eslint-disable-next-line max-len
+                const article = await Article.update({ likes: newLikes }, { where: { id: articleId } });
+                if (article) {
+                    const articleUnliked = await ArticleLike.destroy({ where: { userid: id, articleid: articleId } });
+                    if (articleUnliked) {
+                        res.json({
+                            status: 200,
+                            message: "Unliked!",
+                        });
+                    }
+                }
+            } else {
+                res.status(400).json({
+                    status: 400,
+                    error: "Already unliked!",
+                });
+            }
+        } else {
+            res.status(404).json({
+                status: 404,
+                error: "Article not available!",
+            });
         }
     }
 }
