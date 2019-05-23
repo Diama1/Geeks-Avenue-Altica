@@ -28,16 +28,15 @@ export default class UserController {
             const newUserAcc = await User.create({
                 fullNames,
                 email,
-                password: HashHelper.hashPassword(password)
+                password: HashHelper.hashPassword(password),
             });
             if (Object.keys(newUserAcc.dataValues).length > 0) {
-                const token = jwt.sign({
-                    email,
-                    id: newUserAcc.dataValues.id,
-                    fullNames: newUserAcc.dataValues.fullNames,
-                }, process.env.SECRET_KEY, {
+                console.log(newUserAcc.dataValues);
+
+                const token = jwt.sign(newUserAcc.dataValues, process.env.SECRET_KEY, {
                     expiresIn: 86400, // this will expire in one day
                 });
+
 
                 return res.status(201).json({
                     status: 201,
@@ -62,10 +61,7 @@ export default class UserController {
             });
             if (checkUser.length > 0
       && HashHelper.comparePassword(password, checkUser[0].dataValues.password)) {
-                const token = jwt.sign({
-                    email: checkUser[0].dataValues.email,
-                    id: checkUser[0].dataValues.id,
-                }, process.env.SECRET_KEY, {
+                const token = jwt.sign(checkUser[0].dataValues, process.env.SECRET_KEY, {
                     expiresIn: 86400, // this is equivalent to a day in seconds
                 });
                 // const loggedInUser = checkUser[0].dataValues;
