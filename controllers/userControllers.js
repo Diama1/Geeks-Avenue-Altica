@@ -11,7 +11,6 @@ dotenv.config();
 export default class UserController {
     static async createAccount(req, res) {
         const { fullNames, email, password } = req.body;
-        try {
             const checkExistance = await User.findAll({
                 where: {
                     email,
@@ -30,9 +29,7 @@ export default class UserController {
                 password: HashHelper.hashPassword(password),
             });
             if (Object.keys(newUserAcc.dataValues).length > 0) {
-                console.log(newUserAcc.dataValues);
-
-                const token = jwt.sign(newUserAcc.dataValues, process.env.SECRET_KEY, {
+                    const token = jwt.sign(newUserAcc.dataValues, process.env.SECRET_KEY, {
                     expiresIn: 86400, // this will expire in one day
                 });
 
@@ -44,15 +41,11 @@ export default class UserController {
                     token,
                 });
             }
-        } catch (err) {
-            console.log(err);
-        }
-    }
+        } 
 
     static async loginUser(req, res) {
         const { email, password } = req.body;
 
-        try {
             const checkUser = await User.findAll({
                 where: {
                     email,
@@ -75,8 +68,5 @@ export default class UserController {
                 status: 400,
                 error: "you must first sign up to the system",
             });
-        } catch (error) {
-            console.log(error);
         }
     }
-}
