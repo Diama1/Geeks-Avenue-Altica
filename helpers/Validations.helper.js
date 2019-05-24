@@ -38,6 +38,14 @@ class Validations {
 
         return Joi.validate(article, schema);
     }
+
+    static commentArticle(comment){
+        const schema= {
+            description: Joi.string(),
+        };
+
+        return Joi.validate(comment, schema);
+    }
 }
 
 export default Validations;

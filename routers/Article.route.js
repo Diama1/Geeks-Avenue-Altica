@@ -15,10 +15,14 @@ router.get("/personal", Auth.verifyToken, ArticleController.getStoryOwn);
 
 router.get("/:id", Auth.verifyToken, ArticleController.getSpecificArticle);
 
+
 router.patch("/:articleId", Auth.verifyToken, checkOwner, Validate.validateUpdateArticle, ArticleController.editStory);
+
 
 router.delete("/:articleId", Auth.verifyToken, ArticleController.deleteStory);
 router.patch("/:articleId/like", Auth.verifyToken, ArticleController.likeArticle);
 router.patch("/:articleId/unlike", Auth.verifyToken, ArticleController.unlikeArticle);
+router.post('/:id/comment', Auth.verifyToken, Validate.validateComment, ArticleController.postComment);
+// router.patch("/:articleId/comments/:commentId",Auth.verifyToken,ArticleController.modifyComment);
 
 export default router;
