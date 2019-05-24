@@ -312,7 +312,7 @@ header {
       .article__options--stats span {
         border: 1px solid #E8ECEF;
         padding: 10px; }
-        .article__options--stats span:first-child {
+        .article__options--stats span:first-child, .article__options--stats span:nth-child(2) {
           margin-right: 15px; }
   .article__comment {
     border: 1px solid #edf4f8;
