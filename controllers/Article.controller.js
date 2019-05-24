@@ -10,9 +10,9 @@ const { Article, User, ArticleLike, Comment } = db;
  *  */
 class ArticleController {
     /**
-     *
-     * @param {*} req - request
-     * @param {*} res - response
+     * @Author - Elie Mugenzi
+     * @param {title,description,category} req - request
+     * @param {Object} res - response
      *
      * description: This helps user to create a new story
      */
@@ -115,29 +115,29 @@ class ArticleController {
     * @param {title,description,category} req - Request Object
     * @param {Object} res - Response Object
     */
-     static async editStory(req,res){
-         const {articleId}=req.params;
-         const {title,description,category}=req.body;
-         
-         const updateData={
-             title: title || req.Existing.title,
-             description:description || req.Existing.description,
-             category:category || req.Existing.category
-         };
-         
-         //@Update the Article's Data in the database
-         await Article.update({
-             title:updateData.title,
-             description:updateData.description,
-             category:updateData.category
-         },{where:{id:articleId}});
-         
-         //@returning a response
-         return res.status(200).send({
-             status:res.statusCode,
-             message:"Article successfully updated...",
-         })
-     }
+    static async editStory(req, res) {
+        const { articleId } = req.params;
+        const { title, description, category } = req.body;
+
+        const updateData = {
+            title: title || req.Existing.title,
+            description: description || req.Existing.description,
+            category: category || req.Existing.category,
+        };
+
+        // @Update the Article's Data in the database
+        await Article.update({
+            title: updateData.title,
+            description: updateData.description,
+            category: updateData.category,
+        }, { where: { id: articleId } });
+
+        // @returning a response
+        return res.status(200).send({
+            status: res.statusCode,
+            message: "Article successfully updated...",
+        });
+    }
 
     /**
      * @static
@@ -184,6 +184,7 @@ class ArticleController {
 
     /**
    * @static
+   * @Author - Elie Mugenzi
    * @param {*} req - request
    * @param {*} res - response
    * @description - this function enables user to like an article
@@ -223,6 +224,12 @@ class ArticleController {
             });
         }
     }
+
+    /**
+     * @Author - Elie Mugenzi
+     * @param {*} req - Request
+     * @param {*} res - Response
+     */
 
     static async unlikeArticle(req, res) {
         const { id } = req.user;
