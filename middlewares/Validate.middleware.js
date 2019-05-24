@@ -48,6 +48,18 @@ class Validate {
             next();
         }
     }
+
+    static validateComment(req, res, next) {
+        const { error } = Validations.commentArticle(req.body);
+        if (error) {
+            res.status(400).json({
+                status: 400,
+                error: error.details[0].message.replace(/[$\/\\#,+()$~%.'":*<>{}]/g, ""),
+            });
+        } else {
+            next();
+        }
+    }
 }
 
 export default Validate;

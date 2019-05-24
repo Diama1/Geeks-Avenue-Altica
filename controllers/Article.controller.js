@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import db from "../models";
 
-const { Article, User, ArticleLike } = db;
+const { Article, User, ArticleLike, Comment } = db;
 
 /**
  *
@@ -257,6 +257,72 @@ class ArticleController {
             });
         }
     }
+
+
+    static async postComment(req,res){
+        const { description } = req.body;
+        const checkArticle = await Article.findOne({
+            where: {
+                id: req.params.id,
+            }
+        });
+        if(Object.keys(checkArticle.dataValues).length){
+            const {authorid}=checkArticle.dataValues;
+            const Commentaire = await Comment.create({
+                description: description,
+                authorid,
+                articleid: req.params.id, 
+            });
+           return res.status(201).json({
+                status:201,
+                message: 'success',
+                comment: Commentaire
+            });
+        }
+        res.status(400).json({
+            status:400,
+            message:'failed to comment',
+        });
+
+    }
+
+    // static async modifyComment(req,res){
+    //   const { description } = req.body;
+    //   const {id}=req.user;
+    //   const {articleId,commentId}=req.params;
+    //   const currentArticle=await Article.findOne({where:{id:articleId}});
+    //   if(currentArticle){
+    //        const currentComment=await Comment.findOne({where:{id:commentId}});
+    //        if(currentComment){
+    //           const updated=await Comment.update({
+    //               description,
+    //               authorid:id,
+    //               articleid
+    //           });
+    //           if(updated){
+    //               return res.status(200).json({
+    //                   status:200,
+    //                   message:"Comment updated!"
+    //               })
+    //           }
+
+    //       }
+    //       else{
+    //           res.status(404).json({
+    //               status:404,
+    //               error:"Comment not found"
+    //           })
+    //       }
+    //   }
+    //   else{
+    //       res.status(404).json({
+    //           status:404,
+    //           error:"This article does not exist!"
+    //       })
+    //   }
+
+      
+    // }
 }
 
 export default ArticleController;
