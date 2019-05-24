@@ -28,14 +28,14 @@ class Validations {
         return Joi.validate(article, schema);
     }
 
-    //@Validating the data which is going to be used for updating an existing Article
+    // @Validating the data which is going to be used for updating an existing Article
     static updateArticle(article) {
-        const schema ={
+        const schema = {
             title: Joi.string(),
             description: Joi.string(),
             category: Joi.string(),
         };
-        
+
         return Joi.validate(article, schema);
     }
 }
