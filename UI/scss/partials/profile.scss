@@ -11,6 +11,7 @@
     &__container{
         border:1px solid $color-primary;
         padding: 20px;
+        border-radius: 5px;
     }
     &__name{
         display: inline-block;
@@ -23,6 +24,8 @@
     &__article{
         padding: 20px;
         border:1px solid $color-primary-light;
+        margin-bottom: 8px;
+        border-radius: 4px;
         &--image{
             position: relative;
             img{

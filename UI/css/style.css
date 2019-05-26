@@ -165,6 +165,9 @@ header {
       z-index: 10;
       transition: 0.3s ease-out;
       cursor: pointer; }
+      @media (max-width: 480px) {
+        header .brand .toggle {
+          height: 40px; } }
       header .brand .toggle:hover .line:first-child {
         transform: translateY(10px) rotate(90deg); }
       header .brand .toggle:hover .line:last-child {
@@ -198,11 +201,22 @@ header {
         left: 0;
         background: #ffffff;
         width: 100%; } }
+    @media (max-width: 768px) {
+      header nav {
+        position: absolute;
+        z-index: 3;
+        top: 0;
+        left: 0;
+        background: #ffffff;
+        width: 100%; } }
     header nav ul {
       list-style: none;
       display: flex;
       justify-content: space-around; }
       @media (max-width: 480px) {
+        header nav ul {
+          display: block; } }
+      @media (max-width: 768px) {
         header nav ul {
           display: block; } }
       header nav ul li {
@@ -211,11 +225,21 @@ header {
           header nav ul li {
             margin-bottom: 10px;
             text-align: center;
-            border: 1px solid #E8ECEF; } }
+            border: 1px solid #E8ECEF;
+            padding: 10px; } }
+        @media (max-width: 768px) {
+          header nav ul li {
+            margin-bottom: 10px;
+            text-align: center;
+            border: 1px solid #E8ECEF;
+            padding: 10px; } }
         header nav ul li a {
           text-decoration: none;
           color: #8898A6;
           font-size: 23px; }
+          @media (max-width: 768px) {
+            header nav ul li a {
+              font-size: 1rem; } }
     header nav.active {
       transform: translate3d(0, 0, 0);
       opacity: 1;
@@ -311,13 +335,15 @@ header {
       padding: 15px; }
       .article__options--stats span {
         border: 1px solid #E8ECEF;
-        padding: 10px; }
+        padding: 10px;
+        border-radius: 5px; }
         .article__options--stats span:first-child, .article__options--stats span:nth-child(2) {
           margin-right: 15px; }
   .article__comment {
     border: 1px solid #edf4f8;
     padding: 20px;
-    margin-bottom: 8px; }
+    margin-bottom: 8px;
+    border-radius: 5px; }
     .article__comment--author {
       font-weight: 700;
       font-size: 16px; }
@@ -330,7 +356,8 @@ header {
     border-radius: 50%; }
   .profile__container {
     border: 1px solid #8898A6;
-    padding: 20px; }
+    padding: 20px;
+    border-radius: 5px; }
   .profile__name {
     display: inline-block;
     margin-bottom: 20px; }
@@ -338,7 +365,9 @@ header {
     margin-bottom: 20px; }
   .profile__article {
     padding: 20px;
-    border: 1px solid #E8ECEF; }
+    border: 1px solid #E8ECEF;
+    margin-bottom: 8px;
+    border-radius: 4px; }
     .profile__article--image {
       position: relative; }
       .profile__article--image img {
