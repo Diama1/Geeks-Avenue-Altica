@@ -9,11 +9,11 @@ const router = Router();
 
 router.post("/", Auth.verifyToken, Validate.validateArticle, ArticleController.createStory);
 
-router.get("/", Auth.verifyToken, ArticleController.getAllArticles);
+router.get("/", ArticleController.getAllArticles);
 
 router.get("/personal", Auth.verifyToken, ArticleController.getStoryOwn);
 
-router.get("/:id", Auth.verifyToken, ArticleController.getSpecificArticle);
+router.get("/:id", ArticleController.getSpecificArticle);
 
 
 router.patch("/:articleId", Auth.verifyToken, checkOwner, Validate.validateUpdateArticle, ArticleController.editStory);
@@ -22,7 +22,7 @@ router.patch("/:articleId", Auth.verifyToken, checkOwner, Validate.validateUpdat
 router.delete("/:articleId", Auth.verifyToken, ArticleController.deleteStory);
 router.patch("/:articleId/like", Auth.verifyToken, ArticleController.likeArticle);
 router.patch("/:articleId/unlike", Auth.verifyToken, ArticleController.unlikeArticle);
-router.post('/:id/comment', Auth.verifyToken, Validate.validateComment, ArticleController.postComment);
+router.post("/:id/comment", Auth.verifyToken, Validate.validateComment, ArticleController.postComment);
 // router.patch("/:articleId/comments/:commentId",Auth.verifyToken,ArticleController.modifyComment);
 
 export default router;
