@@ -44,6 +44,9 @@ header{
             z-index:10;
             @include easeOut(.3s);
             cursor: pointer;
+            @include mediaSm{
+                height: 40px;
+            }
             &:hover{
                 .line{
                     &:first-child{
@@ -95,11 +98,22 @@ header{
             background:$color-white;
             width: 100%;
         }
+        @include mediaMd{
+            position:absolute;
+            z-index:3;
+            top: 0;
+            left: 0;
+            background:$color-white;
+            width: 100%;
+        }
         ul{
             list-style: none;
             display: flex;
             justify-content: space-around;
             @include mediaSm{
+                display: block;
+            }
+            @include mediaMd{
                 display: block;
             }
             li{
@@ -109,11 +123,21 @@ header{
                     margin-bottom: 10px;
                     text-align:center;
                     border:1px solid $color-primary-light;
+                    padding: 10px;
+                }
+                @include mediaMd{
+                    margin-bottom: 10px;
+                    text-align:center;
+                    border:1px solid $color-primary-light;
+                    padding: 10px;
                 }
                 a{
                     text-decoration: none;
                     color:$color-primary;
                     font-size: 23px;
+                    @include mediaMd{
+                        font-size: 1rem;
+                    }
                 }
             }
         }
