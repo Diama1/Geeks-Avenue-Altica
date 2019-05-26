@@ -23,6 +23,9 @@ router.delete("/:articleId", Auth.verifyToken, ArticleController.deleteStory);
 router.patch("/:articleId/like", Auth.verifyToken, ArticleController.likeArticle);
 router.patch("/:articleId/unlike", Auth.verifyToken, ArticleController.unlikeArticle);
 router.post("/:id/comment", Auth.verifyToken, Validate.validateComment, ArticleController.postComment);
+
+router.get("/:id/comments", ArticleController.getComments);
+
 // router.patch("/:articleId/comments/:commentId",Auth.verifyToken,ArticleController.modifyComment);
 
 export default router;
