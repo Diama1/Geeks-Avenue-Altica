@@ -286,43 +286,7 @@ class ArticleController {
 
     }
 
-    // static async modifyComment(req,res){
-    //   const { description } = req.body;
-    //   const {id}=req.user;
-    //   const {articleId,commentId}=req.params;
-    //   const currentArticle=await Article.findOne({where:{id:articleId}});
-    //   if(currentArticle){
-    //        const currentComment=await Comment.findOne({where:{id:commentId}});
-    //        if(currentComment){
-    //           const updated=await Comment.update({
-    //               description,
-    //               authorid:id,
-    //               articleid
-    //           });
-    //           if(updated){
-    //               return res.status(200).json({
-    //                   status:200,
-    //                   message:"Comment updated!"
-    //               })
-    //           }
-
-    //       }
-    //       else{
-    //           res.status(404).json({
-    //               status:404,
-    //               error:"Comment not found"
-    //           })
-    //       }
-    //   }
-    //   else{
-    //       res.status(404).json({
-    //           status:404,
-    //           error:"This article does not exist!"
-    //       })
-    //   }
-
-      
-    // }
+   
 }
 
 export default ArticleController;
