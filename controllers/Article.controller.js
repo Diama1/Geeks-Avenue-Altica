@@ -332,6 +332,31 @@ class ArticleController {
             });
         }
     }
+
+    static async getSingleComment(req,res){
+        const { commentId,id } = req.params;
+        const single = await Comment.findOne({
+            where: {
+                id: commentId,
+                articleid: id,
+            }
+        });
+        console.log(single);
+        if(single) {
+            res.status(200).json({
+                status:200,
+                data:single.dataValues,
+            });
+        }
+        else{
+            res.status(404).json({
+                status:404,
+                message: 'no comment found',
+            })
+        }
+
+        
+    }
 }
 
 export default ArticleController;
