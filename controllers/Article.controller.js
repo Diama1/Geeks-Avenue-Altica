@@ -278,10 +278,9 @@ class ArticleController {
             },
         });
         if (checkArticle) {
-            const { authorid } = checkArticle.dataValues;
             const Commentaire = await Comment.create({
                 description,
-                authorid,
+                authorid: req.user.id,
                 articleid: req.params.id,
             });
             return res.status(201).json({
@@ -307,7 +306,7 @@ class ArticleController {
         const { id } = req.params;
         const currentArticle = await Article.findOne({ where: { id } });
         if (currentArticle) {
-            const comments = await Comment.findAll();
+            const comments = await Comment.findAll({ where: { articleid: id } });
             res.json({
                 status: 200,
                 data: comments,
