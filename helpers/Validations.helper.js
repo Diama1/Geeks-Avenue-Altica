@@ -30,19 +30,19 @@ class Validations {
 
     // @Validating the data which is going to be used for updating an existing Article
     static updateArticle(article) {
-        const schema = {
+        const schema = Joi.object().keys({
             title: Joi.string(),
             description: Joi.string(),
             category: Joi.string(),
-        };
+        });
 
         return Joi.validate(article, schema);
     }
 
-    static commentArticle(comment){
-        const schema= {
-            description: Joi.string(),
-        };
+    static commentArticle(comment) {
+        const schema = Joi.object().keys({
+            description: Joi.string().required(),
+        });
 
         return Joi.validate(comment, schema);
     }
