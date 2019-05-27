@@ -1,7 +1,11 @@
+/* eslint-disable no-dupe-keys */
+/* eslint-disable consistent-return */
 /* eslint-disable max-len */
 import db from "../models";
 
-const { Article, User, ArticleLike, Comment } = db;
+const {
+    Article, User, ArticleLike, Comment,
+} = db;
 
 /**
  *
@@ -266,34 +270,69 @@ class ArticleController {
     }
 
 
-    static async postComment(req,res){
+    static async postComment(req, res) {
         const { description } = req.body;
         const checkArticle = await Article.findOne({
             where: {
                 id: req.params.id,
-            }
+            },
         });
-        if(Object.keys(checkArticle.dataValues).length){
-            const {authorid}=checkArticle.dataValues;
+        if (checkArticle) {
+            const { authorid } = checkArticle.dataValues;
             const Commentaire = await Comment.create({
-                description: description,
+                description,
                 authorid,
-                articleid: req.params.id, 
+                articleid: req.params.id,
             });
-           return res.status(201).json({
-                status:201,
-                message: 'success',
-                comment: Commentaire
+            return res.status(201).json({
+                status: 201,
+                message: "success",
+                comment: Commentaire,
             });
         }
-        res.status(400).json({
-            status:400,
-            message:'failed to comment',
+        res.status(404).json({
+            status: 404,
+            message: "Article you want to comment on is not available!",
         });
-
     }
 
-   
+    /**
+     * @Author - Elie Mugenzi
+     * @param {object} req - Request sent to the route
+     * @param {object} res - Response from server
+     * @returns {object} - Object containing the response from server
+     * @description - This enables users to get comments of specific article
+     */
+    static async getComments(req, res) {
+        const { id } = req.params;
+        const currentArticle = await Article.findOne({ where: { id } });
+        if (currentArticle) {
+            const comments = await Comment.findAll();
+            res.json({
+                status: 200,
+                data: comments,
+            });
+        } else {
+            res.status(404).json({
+                status: 404,
+                error: "Article not available",
+            });
+        }
+    }
+
+    static async modifyComment(req, res) {
+        const { id } = req.user;
+        const { articleId } = req.params;
+        const { description } = req.body;
+        const comment = await Comment.update({ description }, { where: { articleid: articleId, authorid: id } }, { returning: true });
+        if (comment) {
+            res.json({
+                status: 200,
+                message: "Comment successfully updated!",
+            });
+        }
+    }
+
 }
 
 export default ArticleController;
