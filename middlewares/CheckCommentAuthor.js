@@ -12,8 +12,8 @@ const CommentAuthor = async (req, res, next) => {
             if (parseInt(authorid, 10) === parseInt(id, 10)) {
                 next();
             } else {
-                res.status(400).json({
-                    status: 400,
+                res.status(403).json({
+                    status: 403,
                     error: "You are not allowed to modify this comment!",
                 });
             }
