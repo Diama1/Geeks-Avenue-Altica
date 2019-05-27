@@ -276,7 +276,7 @@ class ArticleController {
                 id: req.params.id,
             },
         });
-        if (Object.keys(checkArticle.dataValues).length) {
+        if (checkArticle) {
             const { authorid } = checkArticle.dataValues;
             const Commentaire = await Comment.create({
                 description,
@@ -289,9 +289,9 @@ class ArticleController {
                 comment: Commentaire,
             });
         }
-        res.status(400).json({
-            status: 400,
-            message: "failed to comment",
+        res.status(404).json({
+            status: 404,
+            message: "Article you want to comment on is not available!",
         });
     }
 
