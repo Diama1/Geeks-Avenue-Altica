@@ -1,3 +1,4 @@
+/* eslint-disable no-dupe-keys */
 /* eslint-disable consistent-return */
 /* eslint-disable max-len */
 import db from "../models";
@@ -276,7 +277,7 @@ class ArticleController {
                 id: req.params.id,
             },
         });
-        if (Object.keys(checkArticle.dataValues).length) {
+        if (checkArticle) {
             const { authorid } = checkArticle.dataValues;
             const Commentaire = await Comment.create({
                 description,
@@ -289,9 +290,9 @@ class ArticleController {
                 comment: Commentaire,
             });
         }
-        res.status(400).json({
-            status: 400,
-            message: "failed to comment",
+        res.status(404).json({
+            status: 404,
+            message: "Article you want to comment on is not available!",
         });
     }
 
@@ -315,6 +316,19 @@ class ArticleController {
             res.status(404).json({
                 status: 404,
                 error: "Article not available",
+            });
+        }
+    }
+
+    static async modifyComment(req, res) {
+        const { id } = req.user;
+        const { articleId } = req.params;
+        const { description } = req.body;
+        const comment = await Comment.update({ description }, { where: { articleid: articleId, authorid: id } }, { returning: true });
+        if (comment) {
+            res.json({
+                status: 200,
+                message: "Comment successfully updated!",
             });
         }
     }
