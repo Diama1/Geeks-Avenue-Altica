@@ -1,16 +1,26 @@
+/* eslint-disable no-restricted-globals */
 // @Bring in Our Models
 import models from "../models";
 
 // Destructuring our comment and Article Models
 const { Article,Comment } = models;
 
-/* @Check if that User who logged in,
+
+module.exports = {
+ 
+ /* @Check if that User who logged in,
  * Is the owner of the Article which is trying to edit
  */
-module.exports = {
     checkArticleOwner: async (req, res, next) => {
         const { id } = req.user;
         const { articleId } = req.params;
+      
+       if (isNaN(articleId)) {
+        return res.status(400).json({
+            status: 400,
+            error: "Invalid Article Id",
+        });
+    }
     
         // @check if the Article is existing
         const result = await Article.findOne({ where: { id: articleId } });
