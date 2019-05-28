@@ -29,5 +29,6 @@ router.get("/:id/comments", ArticleController.getComments);
 
 router.patch("/:articleId/comments/:commentId", Auth.verifyToken, Validate.validateComment, CommentAuthor, ArticleController.modifyComment);
 router.get("/:id/comments/:commentId", singleArticle, ArticleController.getSingleComment);
+router.get("/:id/likes", ArticleController.getLikers);
 
 export default router;

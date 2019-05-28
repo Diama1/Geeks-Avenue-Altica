@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 /* eslint-disable no-dupe-keys */
 /* eslint-disable consistent-return */
 /* eslint-disable max-len */
@@ -51,13 +52,29 @@ class ArticleController {
      */
 
     static async getAllArticles(req, res) {
-        const stories = await Article.findAll();
+        const { category } = req.query;
+        if (category) {
+            const stori = await Article.findAll({ where: { category } });
+            if (stori.length) {
+                res.json({
+                    status: 200,
+                    data: stori,
+                });
+            } else {
+                res.status(404).json({
+                    status: 404,
+                    error: "Whaaat?",
+                });
+            }
+        } else {
+            const stories = await Article.findAll();
 
-        res.status(200).json({
-            status: 200,
-            message: "All Articles",
-            data: stories,
-        });
+            res.status(200).json({
+                status: 200,
+                message: "All Articles",
+                data: stories,
+            });
+        }
     }
 
     /**
@@ -68,6 +85,13 @@ class ArticleController {
      * @description - User should be able to get one specific story...
      */
     static async getSpecificArticle(req, res) {
+        const { id } = req.params;
+        if (isNaN(id)) {
+            return res.status(400).json({
+                status: 400,
+                error: "Invalid Article ID",
+            });
+        }
         const specificStory = await Article.findOne({
             where: {
                 id: req.params.id,
@@ -85,6 +109,7 @@ class ArticleController {
             }).status(404);
         }
     }
+
 
     /**
      * @static
@@ -153,10 +178,15 @@ class ArticleController {
     static async deleteStory(req, res) {
         const { id } = req.user;
         const { articleId } = req.params;
+        if (isNaN(articleId)) {
+            return res.status(400).json({
+                status: 400,
+                error: "Invalid Article ID",
+            });
+        }
         const user = await User.findOne({ where: { id } });
         if (Object.keys(user.dataValues).length) {
             const article = await Article.findOne({ where: { id: articleId } });
-            console.log(article);
             if (article) {
                 if (parseInt(article.dataValues.authorid, 10) === parseInt(id, 10)) {
                     const result = await Article.destroy({ where: { id: articleId }, returning: true });
@@ -196,6 +226,13 @@ class ArticleController {
     static async likeArticle(req, res) {
         const { id } = req.user;
         const { articleId } = req.params;
+        if (isNaN(articleId)) {
+            return res.status(400).json({
+                status: 400,
+                error: "Invalid Article ID",
+            });
+        }
+
         const articleToLike = await Article.findOne({ where: { id: articleId } });
         if (articleToLike) {
             const liked = await ArticleLike.findOne({ where: { userid: id, articleid: articleId } });
@@ -238,6 +275,14 @@ class ArticleController {
     static async unlikeArticle(req, res) {
         const { id } = req.user;
         const { articleId } = req.params;
+
+        if (isNaN(articleId)) {
+            return res.status(400).json({
+                status: 400,
+                error: "Invalid Article ID",
+            });
+        }
+
         const articleToUnlike = await Article.findOne({ where: { id: articleId } });
         if (articleToUnlike) {
             const { likes } = articleToUnlike.dataValues;
@@ -272,6 +317,14 @@ class ArticleController {
 
     static async postComment(req, res) {
         const { description } = req.body;
+
+        if (isNaN(req.params.id)) {
+            return res.status(400).json({
+                status: 400,
+                error: "Invalid Article ID",
+            });
+        }
+
         const checkArticle = await Article.findOne({
             where: {
                 id: req.params.id,
@@ -304,6 +357,12 @@ class ArticleController {
      */
     static async getComments(req, res) {
         const { id } = req.params;
+        if (isNaN(id)) {
+            return res.status(400).json({
+                status: 400,
+                error: "Invalid Article ID",
+            });
+        }
         const currentArticle = await Article.findOne({ where: { id } });
         if (currentArticle) {
             const comments = await Comment.findAll({ where: { articleid: id } });
@@ -332,29 +391,54 @@ class ArticleController {
         }
     }
 
-    static async getSingleComment(req,res){
-        const { commentId,id } = req.params;
+    static async getSingleComment(req, res) {
+        const { commentId, id } = req.params;
+        if (isNaN(commentId) || isNaN(id)) {
+            return res.status(400).json({
+                status: 400,
+                error: "Invalid article id or comment id!!!",
+            });
+        }
         const single = await Comment.findOne({
             where: {
                 id: commentId,
                 articleid: id,
-            }
+            },
         });
-        console.log(single);
-        if(single) {
+        if (single) {
             res.status(200).json({
-                status:200,
-                data:single.dataValues,
+                status: 200,
+                data: single.dataValues,
+            });
+        } else {
+            res.status(404).json({
+                status: 404,
+                message: "no comment found",
             });
         }
-        else{
-            res.status(404).json({
-                status:404,
-                message: 'no comment found',
-            })
-        }
+    }
 
-        
+    static async getLikers(req, res) {
+        const { id } = req.params;
+        if (isNaN(id)) {
+            return res.status(400).json({
+                status: 400,
+                error: "Invalid Article ID",
+            });
+        }
+        const article = await Article.findOne({ where: { id } });
+        if (article) {
+            const likes = await ArticleLike.findAll({ where: { articleid: id } });
+            res.json({
+                status: 200,
+                data: likes,
+            });
+        } else {
+            res.status(404).json({
+                status: 404,
+                error: "Article not found!",
+            });
+        }
     }
 }
 
