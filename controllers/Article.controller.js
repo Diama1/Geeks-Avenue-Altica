@@ -174,7 +174,6 @@ class ArticleController {
         const user = await User.findOne({ where: { id } });
         if (Object.keys(user.dataValues).length) {
             const article = await Article.findOne({ where: { id: articleId } });
-            console.log(article);
             if (article) {
                 if (parseInt(article.dataValues.authorid, 10) === parseInt(id, 10)) {
                     const result = await Article.destroy({ where: { id: articleId }, returning: true });
@@ -350,29 +349,25 @@ class ArticleController {
         }
     }
 
-    static async getSingleComment(req,res){
-        const { commentId,id } = req.params;
+    static async getSingleComment(req, res) {
+        const { commentId, id } = req.params;
         const single = await Comment.findOne({
             where: {
                 id: commentId,
                 articleid: id,
-            }
+            },
         });
-        console.log(single);
-        if(single) {
+        if (single) {
             res.status(200).json({
-                status:200,
-                data:single.dataValues,
+                status: 200,
+                data: single.dataValues,
+            });
+        } else {
+            res.status(404).json({
+                status: 404,
+                message: "no comment found",
             });
         }
-        else{
-            res.status(404).json({
-                status:404,
-                message: 'no comment found',
-            })
-        }
-
-        
     }
 }
 
