@@ -356,6 +356,23 @@ class ArticleController {
 
         
     }
+    
+    /**
+     * @Author Audace Uhiriwe
+     * @param {articleId , commentId} req - Request Parameter
+     * @param {*} res - Response Body
+     */
+
+     static async deleteComment(req,res){
+         const {commentId}=req.params;
+         //@Action - Delete a comment in the database
+         await Comment.destroy({ where: {id: commentId} });
+         return res.status(200).send({
+             status:res.statusCode,
+             message: "Comment deleted successfully!"
+         })
+
+     }
 }
 
 export default ArticleController;
