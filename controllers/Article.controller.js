@@ -51,13 +51,29 @@ class ArticleController {
      */
 
     static async getAllArticles(req, res) {
-        const stories = await Article.findAll();
+        const { category } = req.query;
+        if (category) {
+            const stori = await Article.findAll({ where: { category } });
+            if (stori.length) {
+                res.json({
+                    status: 200,
+                    data: stori,
+                });
+            } else {
+                res.status(404).json({
+                    status: 404,
+                    error: "Whaaat?",
+                });
+            }
+        } else {
+            const stories = await Article.findAll();
 
-        res.status(200).json({
-            status: 200,
-            message: "All Articles",
-            data: stories,
-        });
+            res.status(200).json({
+                status: 200,
+                message: "All Articles",
+                data: stories,
+            });
+        }
     }
 
     /**
@@ -85,6 +101,8 @@ class ArticleController {
             }).status(404);
         }
     }
+
+    
 
     /**
      * @static
