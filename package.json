@@ -4,7 +4,7 @@
   "description": "Geeks Avenue Altica",
   "main": "app.js",
   "scripts": {
-    "test": "NODE_ENV=test npm run undo && NODE_ENV=test npm run migrate && NODE_ENV=test nyc --reporter=html --reporter=text mocha --require @babel/register --require @babel/polyfill --timeout 5000 ./tests/*.js",
+    "test": "NODE_ENV=test npm run undo && NODE_ENV=test npm run migrate && NODE_ENV=test nyc --reporter=lcov --reporter=text mocha --require @babel/register --require @babel/polyfill --timeout 5000 ./tests/*.js --exit",
     "sass": "node-sass --include-path scss UI/scss/style.scss UI/css/style.css",
     "watch-sass": "nodemon -e scss -x \"npm run sass\"",
     "deploy-ui": "gh-pages -d UI",
@@ -54,6 +54,7 @@
     "jsonwebtoken": "^8.5.1",
     "pg": "^7.11.0",
     "pg-hstore": "^2.3.2",
-    "sequelize": "^5.8.6"
+    "sequelize": "^5.8.6",
+    "swagger-ui-express": "^4.0.5"
   }
 }
