@@ -1,9 +1,17 @@
+/* eslint-disable consistent-return */
+/* eslint-disable no-restricted-globals */
 import db from "../models";
 
 const { Article, Comment } = db;
 const CommentAuthor = async (req, res, next) => {
     const { id } = req.user;
     const { articleId, commentId } = req.params;
+    if (isNaN(articleId) || isNaN(commentId)) {
+        return res.status(400).json({
+            status: 400,
+            error: "Invalid Article ID or Comment ID",
+        });
+    }
     const article = await Article.findOne({ where: { id: articleId } });
     if (article) {
         const comment = await Comment.findOne({ where: { id: commentId } });
