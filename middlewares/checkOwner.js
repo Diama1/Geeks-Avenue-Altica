@@ -12,6 +12,13 @@ module.exports = {
         const { id } = req.user;
         const { articleId } = req.params;
     
+        //check if the id of the article or user's id are invalid
+        if (isNaN(id) || isNaN(articleId)) {
+            return res.status(400).json({
+                status: 400,
+                error: "Invalid Article ID",
+            });
+        }
         // @check if the Article is existing
         const result = await Article.findOne({ where: { id: articleId } });
         if (result === null) {
@@ -38,6 +45,14 @@ module.exports = {
     checkCommentOwner: async (req,res,next)=>{
         const { id } = req.user;
         const {commentId}=req.params;
+
+        //check if the id of the Article or User are valid
+        if (isNaN(req.params.id) || isNaN(commentId)) {
+            return res.status(400).json({
+                status: 400,
+                error: "Invalid Article ID",
+            });
+        }
 
         // @check if the Article is existing
         const result = await Article.findOne({ where: { id: parseInt(req.params.id, 10) } });
