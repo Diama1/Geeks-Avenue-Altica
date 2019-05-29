@@ -15,13 +15,6 @@ module.exports = {
         const { id } = req.user;
         const { articleId } = req.params;
       
-       if (isNaN(articleId)) {
-        return res.status(400).json({
-            status: 400,
-            error: "Invalid Article Id",
-        });
-    }
-    
         //check if the id of the article or user's id are invalid
         if (isNaN(id) || isNaN(articleId)) {
             return res.status(400).json({
