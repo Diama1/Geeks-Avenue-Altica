@@ -1,0 +1,118 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Artica API Documentation",
+      "description": "Swagger documentation of Altica (pre-sims projects)",
+      "license": {
+        "name": "Apache 2.0",
+        "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+      }
+    },
+    "host": "localhost:9000",
+    "basePath": "/api/v1",
+    "schemes": ["http"],
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
+
+    "definitions": {
+        "signup":{
+            "required":[
+                "fullNames",
+                "email",
+                "password"
+            ],
+            "properties":{
+                "fullNames":{
+                    "type": "string",
+                    "uniqueItems": "false",
+                    "example": "Frank Mutabazi"
+                },
+                "email":{
+                    "type": "string",
+                    "uniqueItems": "true",
+                    "example": "Frank@gmail.com"
+                },
+                "password":{
+                    "type": "string",
+                    "uniqueItems": "false",
+                    "example": "Frank#@!123"
+                }
+            }
+        },
+        "login":{
+            "required":[
+                "email",
+                "password"
+            ],
+            "properties":{
+                "email":{
+                    "type": "string",
+                    "uniqueItems": "true",
+                    "example": "Frank@gmail.com"
+                },
+                "password":{
+                    "type": "string",
+                    "example": "Frank#@!123"
+                }
+            }
+        }
+    },
+    "paths": {
+        "/auth/signup":{
+            "post":{
+                "tags": ["Account Creation"],
+                "description": "user should be able to create an account",
+                "parameters":[
+                    {
+                        "name":"user",
+                        "in":"body",
+                        "description":"creation of the account on artica",
+                        "schema": {
+                            "$ref":"#/definitions/signup"
+                        }
+                    }
+                ],
+                "produces":["application/json"],
+                "responses":{
+                    "201":{
+                        "description": "new user has been created",
+                        "schema": {
+                            "$ref":"#/definitions/signup"
+                        }
+                    }
+                }
+
+            }
+
+        },
+
+        "/auth/login":{
+            "post":{
+                "tags": ["Account login"],
+                "description": "user should be able to login into his/her account",
+                "parameters":[
+                    {
+                        "name":"user",
+                        "in":"body",
+                        "description":"login the account on artica",
+                        "schema": {
+                            "$ref":"#/definitions/login"
+                        }
+                    }
+                ],
+                "produces":["application/json"],
+                "responses":{
+                    "200":{
+                        "description": "logged in successfully",
+                        "schema": {
+                            "$ref":"#/definitions/login"
+                        }
+                    }
+                }
+
+            }
+
+        }
+    }
+}
