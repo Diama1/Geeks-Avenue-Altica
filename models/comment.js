@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.STRING,
     authorid: DataTypes.INTEGER
   }, {});
+  
   Comment.associate = function(models) {
     // associations can be defined here
     Comment.belongsTo(models.User,{foreignKey:'authorid'});
