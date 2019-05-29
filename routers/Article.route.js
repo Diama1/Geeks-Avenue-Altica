@@ -15,6 +15,7 @@ router.post("/", Auth.verifyToken, Validate.validateArticle, ArticleController.c
 router.get("/", ArticleController.getAllArticles);
 
 router.get("/personal", Auth.verifyToken, ArticleController.getStoryOwn);
+router.get("/personal/:articleId", Auth.verifyToken, ArticleController.getYourStory);
 
 router.get("/:id", ArticleController.getSpecificArticle);
 

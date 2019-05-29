@@ -440,23 +440,46 @@ class ArticleController {
             });
         }
     }
-    
+
     /**
      * @Author Audace Uhiriwe
      * @param {articleId , commentId} req - Request Parameter
      * @param {*} res - Response Body
      */
 
-     static async deleteComment(req,res){
-         const {commentId}=req.params;
-         //@Action - Delete a comment in the database
-         await Comment.destroy({ where: {id: commentId} });
-         return res.status(200).send({
-             status:res.statusCode,
-             message: "Comment deleted successfully!"
-         })
+    static async deleteComment(req, res) {
+        const { commentId } = req.params;
+        // @Action - Delete a comment in the database
+        await Comment.destroy({ where: { id: commentId } });
+        return res.status(200).send({
+            status: res.statusCode,
+            message: "Comment deleted successfully!",
+        });
+    }
 
-     }
+    static async getYourStory(req, res) {
+        const { articleId } = req.params;
+        const { id } = req.user;
+        if (isNaN(articleId)) {
+            return res.status(400).json({
+                status: 400,
+                error: "Invalid Article ID",
+            });
+        }
+
+        const article = await Article.findOne({ where: { id: articleId, authorid: id } });
+        if (article) {
+            res.json({
+                status: 200,
+                data: article,
+            });
+        } else {
+            res.status(404).json({
+                status: 404,
+                error: "Article Not found!",
+            });
+        }
+    }
 }
 
 export default ArticleController;
