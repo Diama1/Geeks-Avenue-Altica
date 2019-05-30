@@ -11,7 +11,8 @@
     "dev": "nodemon --exec babel-node app.js",
     "start": "babel-node app.js",
     "migrate": "sequelize db:migrate",
-    "undo": "sequelize db:migrate:undo:all"
+    "undo": "sequelize db:migrate:undo:all",
+    "coverage":"nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
@@ -46,6 +47,7 @@
     "@hapi/joi": "^15.0.3",
     "bcrypt": "^3.0.6",
     "body-parser": "^1.19.0",
+    "coveralls": "^3.0.3",
     "dotenv": "^8.0.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
