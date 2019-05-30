@@ -73,18 +73,19 @@ describe("Article based tests...", () => {
     it("should be able to unlike an article", (done) => {
         chai.request(app).patch("/api/v1/articles/1/unlike").set("Authorization", `Bearer ${userToken}`)
             .end((err, res) => {
+                console.log(err);
                 expect(res.body).to.be.an("object");
             });
         done();
     });
 
-    // it("Should be able to delete an article he owns", (done) => {
-    //     chai.request(app)
-    //         .delete("/api/v1/articles/1")
-    //         .set("Authorization", `Bearer ${userToken}`)
-    //         .end((err, res) => {
-    //             expect(res.body).to.be.an('object');
-    //         });
-    //     done();
-    // });
+    it("Should be able to delete an article he owns", (done) => {
+        chai.request(app)
+            .delete("/api/v1/articles/1")
+            .set("Authorization", `Bearer ${userToken}`)
+            .end((err, res) => {
+                expect(res.body).to.be.an('object');
+            });
+        done();
+    });
 });

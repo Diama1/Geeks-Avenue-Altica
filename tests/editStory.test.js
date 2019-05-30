@@ -11,20 +11,17 @@ const { validArticle,invalidArticle } = dummyData.updateArticle;
 
 const token = getToken(user);
 const invalidToken = getToken(user1);
-
 describe('PUT /api/articles/:articleId', () => {
 
-  before('it should create a new article', ()=>{
+  beforeEach('create a new article', (done)=>{
     chai
       .request(app)
       .post('/api/v1/articles')
       .set('Authorization',`Bearer ${token}`)
       .send(validArticle)
       .end((err,res)=>{
-
-        console.log("====")
-        console.log(res.body)
-        expect(res.body).to.be.an('object');
+        //expect(res.body).to.be.an('object');
+        done();
       });
   });
 
@@ -57,7 +54,7 @@ describe('PUT /api/articles/:articleId', () => {
   it('should return an error message that you are not the owner of the story',()=>{
     chai
       .request(app)
-      .patch('/api/v1/articles/1')
+      .patch('/api/v1/articles/3')
       .set("Authorization",`Bearer ${invalidToken}`)
       .send(validArticle)
       .end((err,res)=>{
@@ -67,28 +64,31 @@ describe('PUT /api/articles/:articleId', () => {
       });
   });
 
-  it('should validate the title,description and category if are string',()=>{
+  
+  it('should validate the title,description and category if are string',(done)=>{
     chai
       .request(app)
-      .patch('/api/v1/articles/1')
+      .patch('/api/v1/articles/3')
       .set("Authorization",`Bearer ${token}`)
       .send(invalidArticle)
       .end((err,res)=>{
-        console.log("====")
-        console.log(res.body)
          expect(res.body).to.be.an('object');
          expect(res.body.status).to.deep.equal(400);
          expect(res.body.error).to.deep.equal('title must be a string');
+         done()
       });
   });
+  
 
   it('should update successfully the article',()=>{
     chai
       .request(app)
-      .patch('/api/v1/articles/1')
+      .patch('/api/v1/articles/3')
       .set("Authorization",`Bearer ${token}`)
       .send(validArticle)
       .end((err,res)=>{
+        console.log("====")
+        console.log(res.body)
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.deep.equal(200);
         expect(res.body.message).to.deep.equal('Article successfully updated...');
