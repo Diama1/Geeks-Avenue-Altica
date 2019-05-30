@@ -1,0 +1,26 @@
+env:
+  global:
+    - SECRET_KEY=whatever12345
+    - DIALECT='postgres'
+    - DATABASE='artica'
+    - USERNAME='postgres'
+    - PASSWORD='mysecret@123'
+    - PORT=5432
+    - HOST='localhost'
+    - TEST_DATABASE='articatest'
+
+language: node_js
+node_js:
+  - "stable"
+cache:
+  directories:
+    - "node_modules"
+services:
+  - postgresql
+before_script:
+  - psql -c 'CREATE DATABASE articatest;' -U postgres
+  - npm i sequelize-cli -g
+script:
+  - npm test
+after_success:
+  - npm run coverage
