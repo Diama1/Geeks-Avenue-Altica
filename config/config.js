@@ -19,7 +19,7 @@ module.exports = {
         dialect: process.env.DIALECT,
     },
     production: {
-        use_env_variable:"DATABASE_URL",
+        use_env_variable: "DATABASE_URL",
         username: "root",
         password: null,
         database: "database_production",

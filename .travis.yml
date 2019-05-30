@@ -5,7 +5,7 @@ env:
     - DATABASE='artica'
     - USERNAME='postgres'
     - PASSWORD='mysecret@123'
-    - PORT=5432
+    - DB_PORT=5432
     - HOST='localhost'
     - TEST_DATABASE='articatest'
 
