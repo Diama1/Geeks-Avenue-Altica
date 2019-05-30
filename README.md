@@ -1,4 +1,5 @@
 # Altica
+[![Build Status](https://travis-ci.org/Diama1/Geeks-Avenue-Altica.svg?branch=develop)](https://travis-ci.org/Diama1/Geeks-Avenue-Altica)
 
 ## Altica is a web based application
 

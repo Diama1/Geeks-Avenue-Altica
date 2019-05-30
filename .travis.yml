@@ -1,13 +1,3 @@
-env:
-  global:
-    - SECRET_KEY=whatever12345
-    - DIALECT='postgres'
-    - DATABASE='artica'
-    - USERNAME='postgres'
-    - PASSWORD='mysecret@123'
-    - DB_PORT=5432
-    - HOST='localhost'
-    - TEST_DATABASE='articatest'
 
 language: node_js
 node_js:
