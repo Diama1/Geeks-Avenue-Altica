@@ -56,6 +56,24 @@
                     "example": "Frank#@!123"
                 }
             }
+        },
+        "article":{
+            "required":[
+                "title",
+                "description",
+                "category"
+            ],
+            "properties":{
+                "title":{
+                    "type":"string"
+                },
+                "description":{
+                    "type":"string"
+                },
+                "category":{
+                    "type":"string"
+                }
+            }
         }
     },
     "paths": {
@@ -107,6 +125,39 @@
                         "description": "logged in successfully",
                         "schema": {
                             "$ref":"#/definitions/login"
+                        }
+                    }
+                }
+
+            }
+
+        },
+        "/articles":{
+            "post":{
+                "tags": ["Articles Endpoints"],
+                "description": "user should be able to create an article",
+                "parameters":[
+                    {
+                        "name":"Authorization",
+                        "in": "header",
+                        "description" :"The admin token",
+                        "required":true
+                    },
+                    {
+                        "name":"Article",
+                        "in":"body",
+                        "description":"create an article on artica",
+                        "schema": {
+                            "$ref":"#/definitions/article"
+                        }
+                    }
+                ],
+                "produces":["application/json"],
+                "responses":{
+                    "201":{
+                        "description": "article created successfully",
+                        "schema": {
+                            "$ref":"#/definitions/article"
                         }
                     }
                 }
