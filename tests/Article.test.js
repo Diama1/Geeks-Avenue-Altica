@@ -81,14 +81,4 @@ describe("Article based tests...", () => {
             });
         done();
     });
-
-    it("Should be able to delete an article he owns", (done) => {
-        chai.request(app)
-            .delete("/api/v1/articles/1")
-            .set("Authorization", `Bearer ${userToken}`)
-            .end((err, res) => {
-                expect(res.body).to.be.an('object');
-            });
-        done();
-    });
 });
