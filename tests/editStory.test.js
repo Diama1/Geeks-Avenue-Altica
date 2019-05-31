@@ -5,25 +5,25 @@ import chaiHttp from "chai-http";
 import app from "../app";
 import getToken from "../helpers/getToken";
 import dummyData from "./mockupData/dummyData";
+import db from "../models";
 
 chai.use(chaiHttp);
 
 const { user, user1 } = dummyData.users;
 const { validArticle, invalidArticle } = dummyData.updateArticle;
+const { Article } = db;
 
 const token = getToken(user);
 const invalidToken = getToken(user1);
 describe("PUT /api/articles/:articleId", () => {
-    beforeEach("create a new article", (done) => {
-        chai
-            .request(app)
-            .post("/api/v1/articles")
-            .set("Authorization", `Bearer ${token}`)
-            .send(validArticle)
-            .end((err, res) => {
-                // expect(res.body).to.be.an('object');
-                done();
-            });
+    before(async () => {
+        await Article.create({
+            title: "Dummy article",
+            description: "This a dummy one",
+            category: "Fun",
+            authorid: 1,
+            likes: 0,
+        });
     });
 
     it("should return an error message for the invalid articleId provided", () => {
@@ -55,7 +55,7 @@ describe("PUT /api/articles/:articleId", () => {
     it("should return an error message that you are not the owner of the story", () => {
         chai
             .request(app)
-            .patch("/api/v1/articles/3")
+            .patch("/api/v1/articles/1")
             .set("Authorization", `Bearer ${invalidToken}`)
             .send(validArticle)
             .end((err, res) => {
@@ -69,7 +69,7 @@ describe("PUT /api/articles/:articleId", () => {
     it("should validate the title,description and category if are string", (done) => {
         chai
             .request(app)
-            .patch("/api/v1/articles/3")
+            .patch("/api/v1/articles/1")
             .set("Authorization", `Bearer ${token}`)
             .send(invalidArticle)
             .end((err, res) => {
@@ -84,12 +84,10 @@ describe("PUT /api/articles/:articleId", () => {
     it("should update successfully the article", () => {
         chai
             .request(app)
-            .patch("/api/v1/articles/3")
+            .patch("/api/v1/articles/1")
             .set("Authorization", `Bearer ${token}`)
             .send(validArticle)
             .end((err, res) => {
-                console.log("====");
-                console.log(res.body);
                 expect(res.body).to.be.an("object");
                 expect(res.body.status).to.deep.equal(200);
                 expect(res.body.message).to.deep.equal("Article successfully updated...");
