@@ -13,6 +13,7 @@ chai.use(chaiHttp);
 const { user, user1 } = dummyData.users;
 const { validArticle, invalidArticle, validComment } = dummyData.updateArticle;
 
+
 // @ Generate a token to be used - invalid token and the valid token
 const token = getToken(user);
 const invalidToken = getToken(user1);
