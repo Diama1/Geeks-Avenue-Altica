@@ -1,3 +1,6 @@
+/* eslint-disable quotes */
+/* eslint-disable no-console */
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 import chai from "chai";
 import chaiHttp from "chai-http";
