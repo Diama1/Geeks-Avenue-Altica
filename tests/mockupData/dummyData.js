@@ -20,5 +20,8 @@ export default {
             description: "this is the description that has been created by uhiriwe audace",
             category: 4545,
         },
+        validComment: {
+            description: "this is the comment which is going to be deleted",
+        },
     },
 };
