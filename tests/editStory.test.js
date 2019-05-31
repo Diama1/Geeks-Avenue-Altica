@@ -174,4 +174,15 @@ describe("Delete /api/v1/articles/:articleId/comments/:commentId", () => {
                 expect(res.body.message).to.deep.equal("Comment deleted successfully!");
             });
     });
+
+    it("Should be able to delete an article he owns", () => {
+        chai.request(app)
+            .delete("/api/v1/articles/3")
+            .set("Authorization", `Bearer ${token}`)
+            .end((err, res) => {
+                console.log("====");
+                console.log(res.body);
+                expect(res.body).to.be.an("object");
+            });
+    });
 });
