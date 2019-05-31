@@ -32,7 +32,7 @@
 ### Backend
   - NodeJs
   - Express JS
-  -Sequelize ORM
+  - Sequelize ORM
   - Mocha
   - Chai
 
