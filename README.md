@@ -1,5 +1,5 @@
 # Altica
-[![Build Status](https://travis-ci.org/Diama1/Geeks-Avenue-Altica.svg?branch=develop)](https://travis-ci.org/Diama1/Geeks-Avenue-Altica)
+[![Build Status](https://travis-ci.org/Diama1/Geeks-Avenue-Altica.svg?branch=develop)](https://travis-ci.org/Diama1/Geeks-Avenue-Altica)  [![Maintainability](https://api.codeclimate.com/v1/badges/de2f46c614d4ea542d42/maintainability)](https://codeclimate.com/github/Diama1/Geeks-Avenue-Altica/maintainability)
 
 **Altica** is an application which will help the users/clients to read and write blog post / articles in easy way.
 
