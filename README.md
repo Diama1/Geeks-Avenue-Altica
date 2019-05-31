@@ -15,19 +15,19 @@
 8. User can unlike a specific article.
 9. User can create a comment for specific article.
 9. User can viewl all comments for a specific article.
-10.User can update his/her own comment for a specific article.
-11.User can delete a specific comment for a specific article.
-12.User can view all likes for a specific article.
-13.User can view all articles, he/she owns.
-14.User can view a specific article ,he/she owns.
-15.User can view a specific comment for a specific article
+10. User can update his/her own comment for a specific article.
+11. User can delete a specific comment for a specific article.
+12. User can view all likes for a specific article.
+13. User can view all articles, he/she owns.
+14. User can view a specific article ,he/she owns.
+15. User can view a specific comment for a specific article
 
 ## Technologies
 
 ### Frontend
   - HTML
   - SASS , CSS
-  -Javascript
+  - Javascript
 
 ### Backend
   - NodeJs
