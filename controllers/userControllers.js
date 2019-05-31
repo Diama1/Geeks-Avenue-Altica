@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 /* eslint-disable import/no-unresolved */
 import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
