@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-vars */
-/* eslint-disable no-console */
 /* eslint-disable no-undef */
 import chai, { expect } from "chai";
 import chaiHttp from "chai-http";
@@ -16,6 +15,7 @@ const { validArticle, invalidArticle, validComment } = dummyData.updateArticle;
 // @ Generate a token to be used - invalid token and the valid token
 const token = getToken(user);
 const invalidToken = getToken(user1);
+
 describe("PUT /api/articles/:articleId", () => {
     beforeEach("create a new article", (done) => {
         chai
@@ -167,11 +167,11 @@ describe("Delete /api/v1/articles/:articleId/comments/:commentId", () => {
             .delete("/api/v1/articles/3/comments/1")
             .set("Authorization", `Bearer ${token}`)
             .end((err, res) => {
-                console.log("====");
-                console.log(res.body);
                 expect(res.body).to.be.an("object");
                 expect(res.body.status).to.deep.equal(200);
                 expect(res.body.message).to.deep.equal("Comment deleted successfully!");
+                done();
             });
     });
+
 });
