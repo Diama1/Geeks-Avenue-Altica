@@ -37,8 +37,6 @@ router.get("/:id/comments/:commentId", singleArticle, ArticleController.getSingl
 
 router.delete("/:id/comments/:commentId", Auth.verifyToken, checkCommentOwner, ArticleController.deleteComment);
 
-router.get("/:id/comments/:commentId", singleArticle, ArticleController.getSingleComment);
-
 router.get("/:id/likes", ArticleController.getLikers);
 
 export default router;
