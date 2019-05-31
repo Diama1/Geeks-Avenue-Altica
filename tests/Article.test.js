@@ -1,3 +1,6 @@
+/* eslint-disable quotes */
+/* eslint-disable no-console */
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 import chai from "chai";
 import chaiHttp from "chai-http";
@@ -75,16 +78,6 @@ describe("Article based tests...", () => {
             .end((err, res) => {
                 console.log(err);
                 expect(res.body).to.be.an("object");
-            });
-        done();
-    });
-
-    it("Should be able to delete an article he owns", (done) => {
-        chai.request(app)
-            .delete("/api/v1/articles/1")
-            .set("Authorization", `Bearer ${userToken}`)
-            .end((err, res) => {
-                expect(res.body).to.be.an('object');
             });
         done();
     });
