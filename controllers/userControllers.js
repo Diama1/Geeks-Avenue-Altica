@@ -4,7 +4,8 @@ import jwt from "jsonwebtoken";
 import db from "../models";
 import HashHelper from "../helpers/Hash.helper";
 
-const { User } = db;
+const { User, Blacklist } = db;
+
 
 dotenv.config();
 
@@ -68,5 +69,32 @@ export default class UserController {
             status: 400,
             error: "you must first sign up to the system",
         });
+    }
+
+    static async signOut(req, res){
+        const { id } = req.user;
+        const user = await User.findOne({ where: { id } });
+        console.log(user);
+        if (user){
+           const token=await Blacklist.findOne({where:{
+               token:req.token
+           }});
+           if(token){
+               return res.status(400).send({
+                   message: "Bad Request Bitch!!!"
+               });
+           }
+
+           const dropped = await Blacklist.create({
+               userId:user.id,
+               token:req.token
+           });
+
+           return res.send({
+               message: "you are signed out!"
+           })
+        }
+        
+
     }
 }

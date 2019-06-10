@@ -5,7 +5,7 @@
 import db from "../models";
 
 const {
-    Article, User, ArticleLike, Comment,
+    Article, User, ArticleLike, Comment,Blacklist
 } = db;
 
 /**
@@ -27,6 +27,12 @@ class ArticleController {
         const user = await User.findOne({ where: { id } });
         console.log(user.dataValues);
         if (Object.keys(user.dataValues).length) {
+            const thatToken=await Blacklist.findOne({where:{token:req.token}});
+            if(thatToken){
+                return res.status(403).json({
+                    message:"You're not allowed!"
+                });
+            }
             const newStory = await Article.create({
                 title,
                 description,
